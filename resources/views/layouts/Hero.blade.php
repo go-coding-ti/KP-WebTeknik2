@@ -9,7 +9,7 @@
               <div class="carousel-inner single-feature-post video-post bg-img">
                 <img src="{{$popularBerita->thumbnail}}" class="d-block w-100" alt="...">
                 <div class="post-content">
-                  <a href="{{ route("Berita Kategori", ['language'=>app()->getLocale(), 'kategori' => $popularBerita->kategori->kategori_lower]) }}" class="btn btn-sm btn-warning text-uppercase p-1 text-white text-decoration-none">{{$popularBerita->kategori->kategori_ina}}</a>
+                  <a href="{{ route("Berita Kategori", ['language'=>app()->getLocale(), 'kategori' => $popularBerita->kategori->kategori_lower]) }}" class="btn btn-sm btn-danger text-uppercase p-1 text-white text-decoration-none">{{$popularBerita->kategori->kategori_ina}}</a>
                   <a href="{{ route("Detail Berita", ['language'=>app()->getLocale(), 'title_slug' => $popularBerita->title_slug]) }}" class="post-title card border border-0 text-decoration-none link-white fw-bold">{{$popularBerita->title_eng}}</a>
                   <div class="post-meta d-flex">
                     <a href="#" class="text-decoration-none">
@@ -69,7 +69,7 @@
               <div class="carousel-inner single-feature-post video-post bg-img">
                   <img src="{{$popularBerita->thumbnail}}" class="d-block w-100" alt="...">
                   <div class="post-content">
-                    <a href="{{ route("Berita Kategori", ['language'=>app()->getLocale(), 'kategori' => $popularBerita->kategori->kategori_lower]) }}" class="btn btn-sm btn-warning text-uppercase p-1 text-white text-decoration-none">{{$popularBerita->kategori->kategori_ina}}</a>
+                    <a href="{{ route("Berita Kategori", ['language'=>app()->getLocale(), 'kategori' => $popularBerita->kategori->kategori_lower]) }}" class="btn btn-sm btn-danger text-uppercase p-1 text-white text-decoration-none">{{$popularBerita->kategori->kategori_ina}}</a>
                     <a href="{{ route("Detail Berita", ['language'=>app()->getLocale(), 'title_slug' => $popularBerita->title_slug]) }}" class="post-title card border border-0 text-decoration-none link-white fw-bold">{{$popularBerita->title_ina}}</a>
                     <div class="post-meta d-flex">
                       <a href="#" class="text-decoration-none">

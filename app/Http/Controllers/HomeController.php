@@ -296,7 +296,7 @@ class HomeController extends Controller
     }
 
     public function staf(){
-        $stafs = Staff::with('prodi')->where('deleted_at', NULL)->paginate(10);
+        $stafs = Staff::where('deleted_at', NULL)->paginate(10);
         //ALL FUNCTION MUST APPLY CODES BELOW
         $sosmeds = Social::get();
         $preference = Preference::first();
@@ -322,7 +322,7 @@ class HomeController extends Controller
     }
 
     public function manajemen(){
-        $stafs = Staff::with('prodi')->with('jabatan')->where('deleted_at', NULL)->where('id_jabatan', '!=', NULL)->paginate(10);
+        $stafs = Staff::where('deleted_at', NULL)->where('id_jabatan', '!=', NULL)->paginate(10);
         //ALL FUNCTION MUST APPLY CODES BELOW
         $sosmeds = Social::get();
         $preference = Preference::first();

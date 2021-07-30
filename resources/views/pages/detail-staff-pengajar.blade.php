@@ -22,7 +22,7 @@
       <div class="col-sm-12 col-md-8">
         <div class="rounded p-3 bg-grey text-white">
           <h4 class="fw-bold">{{$staf->nama}}</h4>
-          <span class="fs-5">{{$staf->prodi->prodi_eng}}</span>
+          <span class="fs-5">{{$staf->prodi->prodi_eng ?? '-'}}</span>
         </div>
         <div class="rounded p-3 bg-grey text-white mt-3">
           <h4 class="fw-bold">Biography</h4>
@@ -86,7 +86,7 @@
     <div class="col-sm-12 col-md-8">
       <div class="rounded p-3 bg-grey text-white">
         <h4 class="fw-bold">{{$staf->nama}}</h4>
-        <span class="fs-5">{{$staf->prodi->prodi_ina}}</span>
+        <span class="fs-5">{{$staf->prodi->prodi_ina ?? '-'}}</span>
       </div>
       <div class="rounded p-3 bg-grey text-white mt-3">
         <h4 class="fw-bold">Biografi</h4>
