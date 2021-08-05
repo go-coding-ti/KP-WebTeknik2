@@ -20,6 +20,7 @@ use App\Preference;
 use App\Submenu;
 use App\Page;
 use App\Download;
+use App\Slide;
 use App\Staff;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -28,6 +29,7 @@ use Illuminate\Support\Facades\File;
 class HomeController extends Controller
 {
     public function index(){
+        $slideshows = Slide::get();
         $kategoris = Kategori::get();
         $beritas = Berita::with('kategori')->where('status', 'aktif')->whereDate('tanggal_publish', '<=', date('Y-m-d'))->orderBy('id', 'DESC')->limit(6)->get();
         $popularBeritas = Berita::with('kategori')->orderBy('read_count', 'DESC')->get();
@@ -45,7 +47,7 @@ class HomeController extends Controller
 
         $pengumumans = Pengumuman::with('kategori')->where('status', 'aktif')->whereDate('tanggal_publish', '<=', date('Y-m-d'))->orderBy('id', 'DESC')->limit(4)->get();
 
-        return view('pages/index', compact('preference', 'videos', 'kategoris', 'beritas', 'popularBeritas', 'agendas', 'galeris', 'pengumumans', 'headers', 'menus', 'submenus', 'sosmeds'));
+        return view('pages/index', compact('slideshows', 'preference', 'videos', 'kategoris', 'beritas', 'popularBeritas', 'agendas', 'galeris', 'pengumumans', 'headers', 'menus', 'submenus', 'sosmeds'));
     }
 
     //AGENDA PAGE
