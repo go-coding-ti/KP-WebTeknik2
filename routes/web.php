@@ -85,6 +85,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/events/show/{kategori}/{judul_slug}', 'AdminController\AgendaController@show')->name('admin-agenda-show');
     Route::get('/events/status/{id}/{status}', 'AdminController\AgendaController@status')->name('admin-agenda-status');
 
+    //Slideshow Controller
+    Route::get('/slideshows', 'AdminController\SlideController@index')->name('admin-slideshow-home');
+    Route::post('/slideshows/store', 'AdminController\SlideController@store')->name('admin-slideshow-store');
+    Route::get('/slideshows/{id}/edit', 'AdminController\SlideController@edit')->name('admin-slideshow-edit');
+    Route::put('/slideshows/{id}', 'AdminController\SlideController@update')->name('admin-slideshow-update');
+    Route::delete('/slideshows/{id}/delete', 'AdminController\SlideController@destroy')->name('admin-slideshow-destroy');
+
     //Pages Controller
     Route::get('/pages', 'AdminController\PageController@index')->name('admin-page-home');
     Route::get('/pages/create', 'AdminController\PageController@create')->name('admin-page-create');

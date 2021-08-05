@@ -14,7 +14,7 @@
           <div class="sidebar-brand-icon">
             <img style="height:45px;width:45px;" class="img-profile rounded-circle"
             @if(auth()->guard()->user()->foto == NULL) src="{{asset('assets/admin/img/profile.png')}}"
-            @else src="{{auth()->guard()->user()->foto}}"
+              @else src="{{auth()->guard()->user()->foto}}"
             @endif>
           </div>
           <div style="font-size: 10px !important;margin-left:10px;" class="sidebar-brand-text my-3">
@@ -73,6 +73,12 @@
               <a class="collapse-item" href="/admin/events"><i class="fas fa-fw fa-list"></i>  Daftar Agenda</a>
             </div>
           </div>
+        </li>
+
+        <li class="nav-item" id="sidebarVideo">
+          <a class="nav-link" href="/admin/slideshows">
+            <i class="fas fa-fw fa-image"></i>
+            <span>Slideshow</span></a>
         </li>
 
         <li class="nav-item" id="sidebarVideo">
