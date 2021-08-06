@@ -1,5 +1,8 @@
 @if (App::getLocale() == 'en')
 <div class="container mt-5 pt-5">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center my-auto">
+    <h1 class="h4 fw-bold text-light border-2 border-bottom border-danger p-2">Popular News</h1>
+  </div>
   <div class="row no-gutters">
     <div class="col-12 col-md-7 col-lg-8 p-0 px-1">
       <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
@@ -60,6 +63,10 @@
 
 @if (App::getLocale() == 'id')
   <div class="container mt-5 pt-5">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center my-auto">
+      <h1 class="h4 fw-bold text-light border-2 border-bottom border-danger p-2">Berita Populer</h1>
+    </div>
+    <hr class="border border-light dropdown-divider mb-3 mt-0 pt-0">
     <div class="row no-gutters">
       <div class="col-12 col-md-7 col-lg-8 p-0 px-1">
         <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">

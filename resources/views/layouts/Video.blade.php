@@ -32,7 +32,7 @@
 @if (App::getLocale() == 'id')
   <div class="container">
     <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-5">
-      <h1 class="h4 fw-bold text-light border-3 border-bottom border-danger p-2 pb-0 mb-0">Related Video</h1>
+      <h1 class="h4 fw-bold text-light border-3 border-bottom border-danger p-2 pb-0 mb-0">Video Terkait</h1>
     </div>
     <hr class="border border-light dropdown-divider pt-0 mt-0">
   </div>

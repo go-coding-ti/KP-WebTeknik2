@@ -278,10 +278,10 @@
 
 {{-- CROPPER ADD --}}
 <div class="modal fade" id="crop-image" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Pilih Icon</h5>
+        <h5 class="modal-title">Pilih Slideshow</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
@@ -308,7 +308,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Ganti Icon</h5>
+        <h5 class="modal-title">Ganti Slideshow</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
@@ -405,8 +405,8 @@
 					cropper.destroy();
    					cropper = null;
 					cropper = new Cropper(imageadd, {
-						aspectRatio: 16/9,
-						viewMode: 3,
+						aspectRatio: 21/9,
+						viewMode: 1,
 						preview: '.preview'
 					});
 	            }
@@ -418,8 +418,8 @@
 		});
 		$('#crop-image').on('shown.bs.modal', function(){
 			cropper = new Cropper(imageadd, {
-				aspectRatio: 16/9,
-				viewMode: 3,
+				aspectRatio: 21/9,
+				viewMode: 1,
 				preview: '.preview'
 			});
 		}).on('hidden.bs.modal', function(){
@@ -472,8 +472,8 @@
 					cropper.destroy();
    					cropper = null;
 					cropper = new Cropper(image, {
-						aspectRatio: 16/9,
-						viewMode: 3,
+						aspectRatio: 21/9,
+						viewMode: 1,
 						preview: '.preview'
 					});
 	            }
@@ -485,8 +485,8 @@
 		});
 		$('#edit_crop-image').on('shown.bs.modal', function(){
 			cropper = new Cropper(image, {
-				aspectRatio: 16/9,
-				viewMode: 3,
+				aspectRatio: 21 /9,
+				viewMode: 1,
 				preview: '.preview'
 			});
 		}).on('hidden.bs.modal', function(){
