@@ -61,6 +61,7 @@ class StaffController extends Controller
         $staf->nomor_telepon = $request->telepon;
         $staf->pendidikan_s1 = $request->s1;
         $staf->pendidikan_s2 = $request->s2;
+        $staf->jenis = $request->jenis;
         if($request->s3 !=""){
             $staf->pendidikan_s3 = $request->s3;
         }
@@ -118,7 +119,8 @@ class StaffController extends Controller
     public function edit($id){
         $prodis = Prodi::where('deleted_at', NULL)->get();
         $staf = Staff::find($id);
-        return view('adminpages.staff.edit', compact('prodis', 'staf'));
+        $stafprodis = StafProdi::where('id_staf', $staf->id)->get();
+        return view('adminpages.staff.edit', compact('prodis', 'staf', 'stafprodis'));
     }
 
     public function update($id, Request $request)
@@ -132,7 +134,8 @@ class StaffController extends Controller
             'telepon' => 'required|min:6',
             'alamat' => 'required|min:6',
             'biografi_ina' => 'required|min:8',
-            'biografi_eng' => 'required|min:8'
+            'biografi_eng' => 'required|min:8',
+            'jenis' => 'required'
         ]);
 
         if($validator->fails()){
@@ -144,11 +147,11 @@ class StaffController extends Controller
         $staf->nama_slug = Str::slug($request->nama);
         $staf->nip = $request->nip;
         $staf->tanggal_lahir = $request->tanggal;
-        $staf->id_prodi = $request->prodi;
         $staf->email = $request->email;
         $staf->nomor_telepon = $request->telepon;
         $staf->pendidikan_s1 = $request->s1;
         $staf->pendidikan_s2 = $request->s2;
+        $staf->jenis = $request->jenis;
         if($request->s3 !=""){
             $staf->pendidikan_s3 = $request->s3;
         }
@@ -178,6 +181,18 @@ class StaffController extends Controller
 
         $staf->update();
 
+        $stafprodis = StafProdi::where('id_staf', $staf->id)->get();
+        foreach($stafprodis as $stafprodi){
+            $stafprodi->delete();
+        }
+
+        foreach($request->prodi as $data => $value){
+            $staf_prodi = new StafProdi();
+            $staf_prodi->id_prodi = $request->prodi[$data];
+            $staf_prodi->id_staf = Staff::max('id');
+            $staf_prodi->save();
+        }
+
         return redirect('/admin/staf')->with('statusInput', 'Staf pengajar berhasil diperbaharui');
     }
 
@@ -199,7 +214,8 @@ class StaffController extends Controller
     public function bidangStore($id, Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'bidang' => 'required'
+            'bidang' => 'required',
+            'bidang_eng' => 'required'
         ]);
 
         if($validator->fails()){
@@ -209,12 +225,46 @@ class StaffController extends Controller
         $bidang = new StafBidang();
         $bidang->id_staf = $id;
         $bidang->bidang = $request->bidang;
+        $bidang->bidang_eng = $request->bidang_eng;
         $bidang->save();
 
         return redirect('/admin/staf/bidang/'.$id)->with('statusInput', 'Bidang penelitian berhasil ditambahkan');
     }
 
-    //StafBidang Start
+    public function bidangEdit($id)
+    {
+        $bidang = StafBidang::find($id);
+        return response()->json(['success' => 'Berhasil', 'bidang' => $bidang]);
+    }
+
+    public function bidangUpdate($id, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'edit_bidang_ina' => 'required|min:3',
+            'edit_bidang_eng' => 'required|min:3'
+        ]);
+
+        if($validator->fails()){
+            return back()->withInput()->withErrors($validator);
+        }
+        
+        $bidang = StafBidang::find($id);
+
+        $bidang->bidang = $request->edit_bidang_ina;
+        $bidang->bidang_eng = $request->edit_bidang_eng;
+        $bidang->save();
+
+        return back()->with('statusInput', 'Bidang penelitian berhasil diperbaharui');
+    }
+
+    public function bidangDestroy($id)
+    {
+    	$bidang = StafBidang::find($id);
+        $bidang->delete();
+        return back()->with('statusInput', 'Bidang penelitian berhasil dihapus');
+    }
+
+    //StafPenelitian Start
     public function penelitianIndex($id){
 
         $data = StafPenelitian::where('deleted_at', NULL)->get();
@@ -238,5 +288,36 @@ class StaffController extends Controller
         $penelitian->save();
 
         return redirect('/admin/staf/penelitian/'.$id)->with('statusInput', 'Penelitian berhasil ditambahkan');
+    }
+
+    public function penelitianEdit($id)
+    {
+        $penelitian = StafPenelitian::find($id);
+        return response()->json(['success' => 'Berhasil', 'penelitian' => $penelitian]);
+    }
+
+    public function penelitianUpdate($id, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'edit_penelitian' => 'required|min:3'
+        ]);
+
+        if($validator->fails()){
+            return back()->withInput()->withErrors($validator);
+        }
+        
+        $penelitian = StafPenelitian::find($id);
+
+        $penelitian->penelitian = $request->edit_penelitian;
+        $penelitian->save();
+
+        return back()->with('statusInput', 'Penelitian berhasil diperbaharui');
+    }
+
+    public function penelitianDestroy($id)
+    {
+    	$penelitian = StafPenelitian::find($id);
+        $penelitian->delete();
+        return back()->with('statusInput', 'Penelitian berhasil dihapus');
     }
 }

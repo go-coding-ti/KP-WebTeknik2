@@ -74,10 +74,14 @@
                 </div>
                 <div class="col-lg-6 col-sm-12">
                     <label for="prodi">Program Studi</label>
-                    <select class="form-control @error ('prodi') is-invalid @enderror" data-live-search="true" id="prodi" rows="3" name="prodi" required>
-                    <option value="">Pilih program studi</option>
+                    <select class="form-control select2 @error ('prodi') is-invalid @enderror" data-live-search="true" id="prodi" rows="3" name="prodi[]" multiple="multiple" required>
                         @foreach ($prodis as $prodi)
-                            <option value="{{$prodi->id}}" @if($prodi->id == $staf->id_prodi) selected @endif>{{$prodi->prodi_ina}}</option>
+                        <option value="{{$prodi->id}}"
+                            @foreach($stafprodis as $stafprodi)
+                                @if($stafprodi->id_prodi == $prodi->id) selected @endif
+                            @endforeach
+                        >{{$prodi->prodi_ina}}</option>
+                        
                         @endforeach
                     </select>
                     @error('prodi')
@@ -200,6 +204,22 @@
                 @enderror
             </div>
             <div class="form-group mt-4">
+                <label for="thumbnail">Jenis Staf Pengajar</label>
+                <input type="text" class="form-control" name="jenis" id="jenis" placeholder="url" hidden required>
+                <div class="form-check ml-2">
+                    <input class="form-check-input" type="radio" name="radio_jenis" id="flexRadioDefault1" value="dosen" @if($staf->jenis=='dosen') checked @endif>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Dosen Biasa
+                    </label>
+                  </div>
+                  <div class="form-check ml-2">
+                    <input class="form-check-input" type="radio" name="radio_jenis" id="flexRadioDefault2" value="guru_besar"  @if($staf->jenis=='guru_besar') checked @endif>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Guru Besar
+                    </label>
+                  </div>
+            </div>
+            <div class="form-group mt-4">
                 <label for="thumbnail">Foto Profil</label>
                 <br>
                 <input type="text" class="form-control" name="foto" id="foto" placeholder="url" hidden>
@@ -267,7 +287,19 @@
 <script>
     $(document).ready(function(e){
         var status;
+
+        $("#jenis").val($("input[name='radio_jenis']:checked").val());
+
+        $("input[name='radio_jenis']").change(function(){
+            $("#jenis").val($("input[name='radio_jenis']:checked").val());
+        });
     });
+
+    //Select2
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+
 
     //CROPPER
 function changeProfile(){

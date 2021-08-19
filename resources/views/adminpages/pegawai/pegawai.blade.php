@@ -1,10 +1,10 @@
 @extends('adminlayout.layout')
-@section('title', 'Daftar Staf Pengajar')
+@section('title', 'Daftar Pegawai')
 @section('content')
 
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">Staf Pengajar</h1>
-      <p class="mb-4">Daftar Staf Pengajar Fakultas Teknik Universitas Udayana</p>
+    <h1 class="h3 mb-2 text-gray-800">Pegawai</h1>
+      <p class="mb-4">Daftar Pegawai Fakultas Teknik Universitas Udayana</p>
 
       @if (session()->has('statusInput'))
         <div class="row">
@@ -36,15 +36,15 @@
 
       <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Daftar Staf Pengajar</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Daftar Pegawai</h6>
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <a href="{{route('admin-staff-create')}}" class="btn btn-primary btn-icon-split">
+            <a href="{{route('admin-pegawai-create')}}" class="btn btn-primary btn-icon-split">
               <span class="icon text-white-50">
                   <i class="fas fa-plus"></i>
               </span>
-              <span class="text">Tambah Staf</span>
+              <span class="text">Tambah Pegawai</span>
             </a>
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
@@ -52,29 +52,21 @@
                   <th>Nama</th>
                   <th>NIP</th>
                   <th>Tanggal Lahir</th>
-                  <th>Status</th>
-                  <th width="185">Action</th>
+                  <th>Jabatan</th>
+                  <th width="150">Action</th>
                 </tr>
               </thead>
               <tbody>
-              @foreach ($data as $i => $staff)
+              @foreach ($data as $i => $pegawai)
                 <tr>
-                  <td>{{$staff->nama}}</td>
-                  <td>{{$staff->nip}}</td>
-                  <td>{{ date('d M Y', strtotime($staff->tanggal_lahir)) }}</td>
-                  <td>
-                    @if($staff->jenis == "dosen")
-                      Dosen Biasa
-                    @elseif($staff->jenis == "guru_besar")
-                      Guru Besar
-                    @endif
-                  </td>
+                  <td>{{$pegawai->nama}}</td>
+                  <td>{{$pegawai->nip}}</td>
+                  <td>{{ date('d M Y', strtotime($pegawai->tanggal_lahir)) }}</td>
+                  <td>{{$pegawai->jabatan->jabatan_ina}}</td>
                   <td class="text-center">
-                    <a style="margin-right:7px" href="/admin/staf/bidang/{{$staff->id}}"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-user-graduate"></i></button></a>
-                    <a style="margin-right:7px" href="/admin/staf/penelitian/{{$staff->id}}"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-hourglass"></i></button></a>
-                    <a style="margin-right:7px" href="/admin/staf/show/{{$staff->id}}"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button></a>
-                    <a style="margin-right:7px" class="btn btn-info btn-sm" href="/admin/staf/{{$staff->id}}/edit" ><i class="fas fa-pencil-alt" ></i></a>
-                    <a class="btn btn-danger btn-sm" onclick="deletestaf({{$staff->id}})" href="#"><i class="fas fa-trash"></i></a>
+                    <a style="margin-right:7px" href="/admin/pegawai/show/{{$pegawai->id}}"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button></a>
+                    <a style="margin-right:7px" class="btn btn-info btn-sm" href="/admin/pegawai/{{$pegawai->id}}/edit" ><i class="fas fa-pencil-alt" ></i></a>
+                    <a class="btn btn-danger btn-sm" onclick="deletestaf({{$pegawai->id}})" href="#"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
               @endforeach
@@ -97,13 +89,13 @@ function showHover(msg){
 //Soft Delete Page
 function deletestaf(id){
   swal({
-    title: 'Anda yakin ingin menghapus staff ini?',
+    title: 'Anda yakin ingin menghapus pegawai ini?',
     icon: 'warning',
     buttons: ["Tidak", "Ya"],
   }).then(function(value) {
     if (value) {
     jQuery.ajax({  
-      url: 'staf/delete/'+id,
+      url: 'pegawai/delete/'+id,
       type: "GET",
         success: function(result){
           location.reload();

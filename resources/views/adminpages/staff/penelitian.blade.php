@@ -113,11 +113,11 @@
   </div>
 </div>
 
-<div class="modal fade" id="showCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="showPenelitian" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="showCategory">Show Kategori</h5>
+        <h5 class="modal-title" id="showCategory">Show Penelitian</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal('showCategory')">
         <span aria-hidden="true">×</span>
         </button>
@@ -130,16 +130,19 @@
         </div>
       </div>
       <div class="modal-body" id="bodyShow">
-            <div class="form-group">
-              <label for="show_kategori_ina">Kategori Bahasa Indonesia</label>
-              <input type="text" class="form-control" id="show_kategori_ina" readonly>
-            </div>
-            <div class="form-group">
-              <label for="show_kategori_eng">Kategori Bahasa Inggris</label>
-              <input type="text" class="form-control" id="show_kategori_eng" readonly>
-            </div>
+              <label for="kategori_ina">Penelitian</label>
+              <textarea type="text" class="form-control @error ('show_penelitian') is-invalid @enderror" id="show_penelitian" name="show_penelitian" rows="5" required disabled></textarea>
+              @error('show_penelitian')
+                  <div class="invalid-feedback text-start">
+                      {{ $message }}
+                  </div>
+              @else
+                  <div class="invalid-feedback">
+                      Penelitian wajib diisi
+                  </div>
+              @enderror
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal" onclick="closeModal('showCategory')">Tutup</button>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal" onclick="closeModal('showPenelitian')">Tutup</button>
             </div>
       </div>
     </div>
@@ -147,12 +150,12 @@
 </div>
 
 <!-- Edit News Category Modal-->
-<div class="modal fade" id="editCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editPenelitian" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabeledit">Edit Kategori</h5>
-          <button class="close" type="button" data-dismiss="editCategory" aria-label="Close" onclick="closeModal('editCategory')">
+          <h5 class="modal-title" id="exampleModalLabeledit">Edit Penelitian</h5>
+          <button class="close" type="button" data-dismiss="editCategory" aria-label="Close" onclick="closeModal('editPenelitian')">
           <span aria-hidden="true">×</span>
           </button>
       </div>
@@ -164,38 +167,25 @@
         </div>
       </div>
       <div class="modal-body" id="bodyEdit">
-          <p>Masukkan Data Kategori yang Hendak Diubah.</p>
+          <p>Masukkan Data Penelitian yang Hendak Diubah.</p>
           <form id="edit-form-category" method="post" action="" enctype="multipart/form-data" class="needs-validation" novalidate>
               @method('PUT')
               @csrf
               <div class="form-group">
-                <label for="edit_kategori_ina">Kategori Bahasa Indonesia</label>
-                <input type="text" class="form-control @error ('edit_kategori_ina') is-invalid @enderror" id="edit_kategori_ina" name="edit_kategori_ina" required>
-                @error('edit_kategori_ina')
+                <label for="kategori_ina">Penelitian</label>
+                <textarea type="text" class="form-control @error ('edit_penelitian') is-invalid @enderror" id="edit_penelitian" name="edit_penelitian" rows="5" required></textarea>
+                @error('edit_penelitian')
                     <div class="invalid-feedback text-start">
                         {{ $message }}
                     </div>
                 @else
                     <div class="invalid-feedback">
-                        Kategori Bahasa Indonesia wajib diisi
-                    </div>
-                @enderror
-              </div>
-              <div class="form-group">
-                <label for="edit_kategori_eng">Kategori Bahasa Inggris</label>
-                <input type="text" class="form-control @error ('edit_kategori_eng') is-invalid @enderror" id="edit_kategori_eng" name="edit_kategori_eng" required>
-                @error('edit_kategori_eng')
-                    <div class="invalid-feedback text-start">
-                        {{ $message }}
-                    </div>
-                @else
-                    <div class="invalid-feedback">
-                        Kategori Bahasa Inggris wajib diisi
+                        Penelitian wajib diisi
                     </div>
                 @enderror
               </div>
               <div class="modal-footer">
-                  <button class="btn btn-secondary" type="button" data-dismiss="modal" onclick="closeModal('editCategory')">Batal</button>
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal" onclick="closeModal('editPenelitian')">Batal</button>
                   <button type="submit" class="btn btn-primary">Simpan</button>
               </div>
             </form>              
@@ -209,13 +199,13 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabelhapus">Hapus Kategori</h5>
+          <h5 class="modal-title" id="exampleModalLabelhapus">Hapus Penelitian</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal('deleteCategory')">
           <span aria-hidden="true">×</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>Apakah anda yakin ingin menghapus kategori ini?</p>
+          <p>Apakah anda yakin ingin menghapus penelitian ini?</p>
           <form id="form-delete-category" method="post" action="">
               @method('delete')
               @csrf
@@ -238,23 +228,21 @@
     $("#loadingShow").show();
     $("#loadingEdit").show();
     if(status=='show'){
-      $('#showCategory').modal('show');
+      $('#showPenelitian').modal('show');
     }else if(status=='edit'){
-      $('#editCategory').modal('show');
+      $('#editPenelitian').modal('show');
     }
     jQuery.ajax({
-      url: "/admin/category/"+id+"/edit",
+      url: "/admin/staf/penelitian/"+id+"/edit",
       method: 'get',
       success: function(result){
         if(status == 'show'){
-            $("#show_kategori_ina").val(result.kategori['kategori_ina']);
-            $("#show_kategori_eng").val(result.kategori['kategori_eng']);
+            $("#show_penelitian").val(result.penelitian['penelitian']);
             $("#loadingShow").hide();
             $("#bodyShow").show();
         }else{
-            $("#edit_kategori_ina").val(result.kategori['kategori_ina']);
-            $("#edit_kategori_eng").val(result.kategori['kategori_eng']);
-            $("#edit-form-category").attr("action", "/admin/category/"+result.kategori['id']);
+            $("#edit_penelitian").val(result.penelitian['penelitian']);
+            $("#edit-form-category").attr("action", "/admin/staf/penelitian/"+result.penelitian['id']);
             $("#loadingEdit").hide();
             $("#bodyEdit").show();
         }                       
@@ -263,7 +251,7 @@
   }
 
   function deletebc(id){
-    $("#form-delete-category").attr("action", "/admin/category/"+id+"/delete");
+    $("#form-delete-category").attr("action", "/admin/staf/penelitian/"+id+"/delete");
     $('#deleteCategory').modal('show');
   }
 

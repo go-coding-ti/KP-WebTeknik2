@@ -1,10 +1,10 @@
 @extends('adminlayout.layout')
-@section('title', 'Tambah Staf Pengajar')
+@section('title', 'Tambah Pegawai')
 @section('content')
 
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">Staf Pengajar</h1>
-    <p class="mb-4">Tambah Staf Pengajar Fakultas Teknik Universitas Udayana</p>
+    <h1 class="h3 mb-2 text-gray-800">Pegawai</h1>
+    <p class="mb-4">Tambah Pegawai Fakultas Teknik Universitas Udayana</p>
 
     @if (count($errors)>0)
         <div class="row">
@@ -25,10 +25,10 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Tambah Staf Pengajar</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tambah Pegawai</h6>
         </div>
         <div class="card-body">
-        <form id="form-product" method="post" action="{{route('admin-staff-store')}}" enctype="multipart/form-data" class="needs-validation" novalidate>
+        <form id="form-product" method="post" action="{{route('admin-pegawai-store')}}" enctype="multipart/form-data" class="needs-validation" novalidate>
             @csrf
             <div class="row">
                 <div class="col-lg-6 col-sm-12">
@@ -73,13 +73,14 @@
                     @enderror
                 </div>
                 <div class="col-lg-6 col-sm-12">
-                    <label for="prodi">Program Studi</label>
-                    <select class="form-control select2 @error ('prodi') is-invalid @enderror" data-live-search="true" id="prodi" rows="3" name="prodi[]" multiple="multiple" required>
-                        @foreach ($prodi as $prodi)
-                            <option value="{{$prodi->id}}">{{$prodi->prodi_ina}}</option>
+                    <label for="prodi">Jabatan</label>
+                    <select class="form-control @error ('jabatan') is-invalid @enderror" data-live-search="true" id="jabatan" rows="3" name="jabatan" required>
+                        <option value="">Pilih jabatan</option>
+                        @foreach ($jabatan as $jabatan)
+                            <option value="{{$jabatan->id}}">{{$jabatan->jabatan_ina}}</option>
                         @endforeach
                     </select>
-                    @error('prodi')
+                    @error('jabatan')
                         <div class="invalid-feedback text-start">
                             {{ $message }}
                         </div>
@@ -118,17 +119,6 @@
                     @enderror
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-6 col-sm-12">
-                    <label for="title">SINTA</label>
-                    <input type="text" class="form-control @error ('sinta') is-invalid @enderror"  id="sinta" name="sinta" placeholder="Masukkan link SINTA">
-
-                </div>
-                <div class="col-lg-6 col-sm-12">
-                    <label for="title">Scopus</label>
-                    <input type="text" class="form-control @error ('scopus') is-invalid @enderror" name="scopus" placeholder="Masukkan link Scopus">
-                </div>
-            </div>
             <div class="form group mt-4">
                 <label for="title">Alamat</label>
                 <textarea type="text" class="form-control @error ('alamat') is-invalid @enderror" id="alamat" name="alamat" placeholder="Masukkan alamat" rows="4" required></textarea>
@@ -141,36 +131,6 @@
                         Alamat wajib diisi
                     </div>
                 @enderror
-            </div>
-            <div class="form group mt-4">
-                <label for="title">Pendidikan S1</label>
-                <input type="text" class="form-control @error ('s1') is-invalid @enderror" id="s1" name="s1" placeholder="Masukkan pendidikan S1" required>
-                @error('s1')
-                    <div class="invalid-feedback text-start">
-                        {{ $message }}
-                    </div>
-                @else
-                    <div class="invalid-feedback">
-                        Pendidikan S1 wajib diisi
-                    </div>
-                @enderror
-            </div>
-            <div class="form group mt-4">
-                <label for="title">Pendidikan S2</label>
-                <input type="text" class="form-control @error ('s2') is-invalid @enderror" id="s2" name="s2" placeholder="Masukkan pendidikan S2" required>
-                @error('s2')
-                    <div class="invalid-feedback text-start">
-                        {{ $message }}
-                    </div>
-                @else
-                    <div class="invalid-feedback">
-                        Pendidikan S2 wajib diisi
-                    </div>
-                @enderror
-            </div>
-            <div class="form group mt-4">
-                <label for="title">Pendidikan S3</label>
-                <input type="text" class="form-control @error ('s3') is-invalid @enderror" id="s3" name="s3" placeholder="Masukkan pendidikan S3">
             </div>
             <div class="form-group form-group mt-4">
                 <label for="description">Biografi Bahasa Indonesia</label>
@@ -199,22 +159,6 @@
                 @enderror
             </div>
             <div class="form-group mt-4">
-                <label for="thumbnail">Jenis Staf Pengajar</label>
-                <input type="text" class="form-control" name="jenis" id="jenis" placeholder="url" hidden required>
-                <div class="form-check ml-2">
-                    <input class="form-check-input" type="radio" name="radio_jenis" id="flexRadioDefault1" value="dosen" checked>
-                    <label class="form-check-label" for="flexRadioDefault1">
-                      Dosen Biasa
-                    </label>
-                  </div>
-                  <div class="form-check ml-2">
-                    <input class="form-check-input" type="radio" name="radio_jenis" id="flexRadioDefault2" value="guru_besar">
-                    <label class="form-check-label" for="flexRadioDefault2">
-                      Guru Besar
-                    </label>
-                  </div>
-            </div>
-            <div class="form-group mt-4">
                 <label for="thumbnail">Foto Profil</label>
                 <br>
                 <input type="text" class="form-control" name="foto" id="foto" placeholder="url" hidden required>
@@ -238,7 +182,7 @@
                 </div>
             </div>
             <div class="form-group mt-4">
-                <a href="{{route('admin-staff-home')}}" class="btn btn-danger btn-icon-split">
+                <a href="{{route('admin-pegawai-home')}}" class="btn btn-danger btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-times"></i>
                     </span>

@@ -118,6 +118,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::put('/jabatan/{id}', 'AdminController\JabatanController@update')->name('admin-jabatan-update');
     Route::delete('/jabatan/{id}/delete', 'AdminController\JabatanController@destroy')->name('admin-jabatan-destroy');
 
+    //Jabatan Pegawai Controller
+    Route::get('/pegawai/jabatan', 'AdminController\JabatanPegawaiController@index')->name('admin-jabatanpegawai-home');
+    Route::post('/pegawai/jabatan/store', 'AdminController\JabatanPegawaiController@store')->name('admin-jabatanpegawai-store');
+    Route::get('/pegawai/jabatan/{id}/edit', 'AdminController\JabatanPegawaiController@edit')->name('admin-jabatanpegawai-edit');
+    Route::put('/pegawai/jabatan/{id}', 'AdminController\JabatanPegawaiController@update')->name('admin-jabatanpegawai-update');
+    Route::delete('/pegawai/jabatan/{id}/delete', 'AdminController\JabatanPegawaiController@destroy')->name('admin-jabatanpegawai-destroy');
+
     //Staff Controller
     Route::get('/staf', 'AdminController\StaffController@index')->name('admin-staff-home');
     Route::get('/staf/create', 'AdminController\StaffController@create')->name('admin-staff-create');
@@ -129,9 +136,24 @@ Route::group(['prefix' => 'admin'], function () {
     //Staff Bidang
     Route::get('/staf/bidang/{id}', 'AdminController\StaffController@bidangIndex')->name('admin-staff-bidang-home');
     Route::post('/staf/bidang/store/{id}', 'AdminController\StaffController@bidangStore')->name('admin-staff-bidang-store');
+    Route::get('/staf/bidang/{id}/edit', 'AdminController\StaffController@bidangEdit')->name('admin-staff-bidang-edit');
+    Route::put('/staf/bidang/{id}', 'AdminController\StaffController@bidangUpdate')->name('admin-staff-bidang-update');
+    Route::delete('/staf/bidang/{id}/delete', 'AdminController\StaffController@bidangDestroy')->name('admin-staff-bidang-destroy');
     //Staff Penelitian
     Route::get('/staf/penelitian/{id}', 'AdminController\StaffController@penelitianIndex')->name('admin-staff-penelitian-home');
     Route::post('/staf/penelitian/store/{id}', 'AdminController\StaffController@penelitianStore')->name('admin-staff-penelitian-store');
+    Route::get('/staf/penelitian/{id}/edit', 'AdminController\StaffController@penelitianEdit')->name('admin-staff-penelitian-edit');
+    Route::put('/staf/penelitian/{id}', 'AdminController\StaffController@penelitianUpdate')->name('admin-staff-penelitian-update');
+    Route::delete('/staf/penelitian/{id}/delete', 'AdminController\StaffController@penelitianDestroy')->name('admin-staff-penelitian-destroy');
+
+    //Pegawai Controller
+    Route::get('/pegawai', 'AdminController\PegawaiController@index')->name('admin-pegawai-home');
+    Route::get('/pegawai/create', 'AdminController\PegawaiController@create')->name('admin-pegawai-create');
+    Route::post('/pegawai/store', 'AdminController\PegawaiController@store')->name('admin-pegawai-store');
+    Route::get('/pegawai/{id}/edit', 'AdminController\PegawaiController@edit')->name('admin-pegawai-edit');
+    Route::post('/pegawai/{id}', 'AdminController\PegawaiController@update')->name('admin-pegawai-update');
+    Route::get('/pegawai/delete/{id}', 'AdminController\PegawaiController@destroy')->name('admin-pegawai-delete');
+    Route::get('/pegawai/show/{id}', 'AdminController\PegawaiController@show')->name('admin-pegawai-show');
 
     //Manajemen Controller
     Route::get('/management', 'AdminController\ManajemenController@index')->name('admin-management-home');
