@@ -356,5 +356,38 @@ class HomeController extends Controller
         $pengumumans = Pengumuman::with('kategori')->where('status', 'aktif')->whereDate('tanggal_publish', '<=', date('Y-m-d'))->orderBy('id', 'DESC')->limit(4)->get();
         return view('pages/detail-management', compact('pengumumans', 'headers', 'menus', 'submenus', 'preference', 'sosmeds', 'staf'));
     }
+  
     
+
+    # Route Detail Staf & Pengajar
+
+        // Detail Dosen
+        public function detailDosen()
+        {
+            // $staf = Staff::where('nama_slug', $nama_slug)->first();
+            //ALL FUNCTION MUST APPLY CODES BELOW
+            $sosmeds = Social::get();
+            $preference = Preference::first();
+            $headers = Header::with('menu')->get();
+            $menus = Menu::with('submenu')->get();
+            $submenus = Submenu::get();
+
+            $pengumumans = Pengumuman::with('kategori')->where('status', 'aktif')->whereDate('tanggal_publish', '<=', date('Y-m-d'))->orderBy('id', 'DESC')->limit(4)->get();
+            return view ('pages.detail-dosen',  compact('pengumumans', 'headers', 'menus', 'submenus', 'preference', 'sosmeds'));
+        }
+
+        // Detail Pegawai
+        public function detailPegawai()
+        {
+            //ALL FUNCTION MUST APPLY CODES BELOW
+            $sosmeds = Social::get();
+            $preference = Preference::first();
+            $headers = Header::with('menu')->get();
+            $menus = Menu::with('submenu')->get();
+            $submenus = Submenu::get();
+
+            $pengumumans = Pengumuman::with('kategori')->where('status', 'aktif')->whereDate('tanggal_publish', '<=', date('Y-m-d'))->orderBy('id', 'DESC')->limit(4)->get();
+            return view ('pages.detail-pegawai',  compact('pengumumans', 'headers', 'menus', 'submenus', 'preference', 'sosmeds'));
+        }
+    # End Route
 }
