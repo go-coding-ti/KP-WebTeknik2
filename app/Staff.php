@@ -18,4 +18,8 @@ class Staff extends Authenticatable
         return $this->belongsTo('App\Jabatan', 'id_jabatan');
     }
 
+    public function staf_prodi(){
+        return $this->hasMany('App\StafProdi', 'id_staf');
+    }
+
 }

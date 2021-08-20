@@ -20,6 +20,8 @@ use App\Preference;
 use App\Submenu;
 use App\Page;
 use App\Download;
+use App\Pegawai;
+use App\Prodi;
 use App\Slide;
 use App\Staff;
 use Illuminate\Support\Facades\Storage;
@@ -298,7 +300,13 @@ class HomeController extends Controller
     }
 
     public function staf(){
-        $stafs = Staff::where('deleted_at', NULL)->paginate(10);
+        $managements = Staff::with('jabatan')->where('deleted_at', NULL)->where('id_jabatan', '!=', NULL)->orderBy('id_jabatan', 'ASC')->get();
+        $stafs = Staff::with('staf_prodi')->where('deleted_at', NULL)->get();
+        $guru_besar = Staff::where('jenis', 'guru_besar')->get();
+        $dosen = Staff::with('staf_prodi')->where('jenis', 'dosen')->get();
+
+        $prodis = Prodi::get();
+        $pegawais = Pegawai::with('jabatan')->get();
         //ALL FUNCTION MUST APPLY CODES BELOW
         $sosmeds = Social::get();
         $preference = Preference::first();
@@ -307,7 +315,7 @@ class HomeController extends Controller
         $submenus = Submenu::get();
 
         $pengumumans = Pengumuman::with('kategori')->where('status', 'aktif')->whereDate('tanggal_publish', '<=', date('Y-m-d'))->orderBy('id', 'DESC')->limit(4)->get();
-        return view('pages/staff-pengajar', compact('pengumumans', 'headers', 'menus', 'submenus', 'preference', 'sosmeds', 'stafs'));
+        return view('pages/staff-pengajar', compact('pegawais', 'prodis', 'guru_besar', 'dosen', 'managements', 'pengumumans', 'headers', 'menus', 'submenus', 'preference', 'sosmeds', 'stafs'));
     }
 
     public function showStaf($language, $nama_slug){

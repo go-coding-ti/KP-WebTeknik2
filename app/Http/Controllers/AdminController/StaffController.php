@@ -189,7 +189,7 @@ class StaffController extends Controller
         foreach($request->prodi as $data => $value){
             $staf_prodi = new StafProdi();
             $staf_prodi->id_prodi = $request->prodi[$data];
-            $staf_prodi->id_staf = Staff::max('id');
+            $staf_prodi->id_staf = $staf->id;
             $staf_prodi->save();
         }
 

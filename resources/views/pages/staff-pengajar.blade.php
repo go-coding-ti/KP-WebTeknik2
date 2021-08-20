@@ -457,14 +457,14 @@
       <div class="tab-content">
           <div class="tab-pane active" id="data-pimpinan">
             <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2">
-              @foreach($stafs as $staf)
+              @foreach($managements as $staf)
               <div class="col p-0 px-1 mb-3">
                 <div class="card bg-grey hover border-0 h-100">
                   <a href="#" class="link-light text-decoration-none ">
                     <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
                     <div class="card-body p-3 text-center">
                         <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
-                        <p class="card-text fw-bold mt-3">{{$staf->prodi->prodi_ina ?? '-'}}</p>
+                        <p class="card-text fw-bold mt-3">{{$staf->jabatan->jabatan_ina ?? '-'}}</p>
                     </div>
                   </a>
                   <div class="card-footer p-3 d-flex justify-content-between border-0">
@@ -483,107 +483,122 @@
             <div class="row">
               <div class="col-sm-12 col-md-2">
                 <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                  <button class="nav-link active text-white" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#sub_bidang_a" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Sub Bidang Pendidikan & Kerjasama</button>
-                  <button class="nav-link text-white" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#sub_bidang_b" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Sub Bidang Umum & Keuangan</button>
-                  <button class="nav-link text-white" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#sub_bidang_c" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Sub Bidang Perencanaan & Sistem Informasi</button>
-                  <button class="nav-link text-white" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#sub_bidang_d" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Sub Bidang Kemahasiswaan</button>
+                  <button class="nav-link active text-white" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#kepala_bidang" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Kepala Bagian Tata Usaha</button>
+                  <button class="nav-link text-white" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#sub_bidang_a" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Sub Bagian Pendidikan & Kerjasama</button>
+                  <button class="nav-link text-white" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#sub_bidang_b" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Sub Bagian Umum & Keuangan</button>
+                  <button class="nav-link text-white" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#sub_bidang_c" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Sub Bagian Perencanaan & Sistem Informasi</button>
+                  <button class="nav-link text-white" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#sub_bidang_d" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Sub Bagian Kemahasiswaan</button>
                 </div>
               </div>
               <div class="col-sm-12 col-md-10">
                 <div class="tab-content bg-grey text-white rounded p-3" id="v-pills-tabContent">
-                  <div class="tab-pane fade show active" id="sub_bidang_a" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                    <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2">
-                      @foreach($stafs as $staf)
-                      <div class="col p-0 px-1 mb-3">
-                        <div class="card bg-grey hover border-0 h-100">
-                          <a href="#" class="link-light text-decoration-none ">
-                            <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
-                            <div class="card-body p-3 text-center">
-                                <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
-                                <p class="card-text fw-bold mt-3">{{$staf->prodi->prodi_ina ?? '-'}}</p>
-                            </div>
-                          </a>
-                          <div class="card-footer p-3 d-flex justify-content-between border-0">
-                            <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
-                            <div>
-                              <a href="{{$staf->sinta}}" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                              <a href="{{$staf->scopus}}" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
+                  <div class="tab-pane fade show active" id="kepala_bidang" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2 text-center">
+                      @foreach($pegawais as $staf)
+                        @if($staf->jabatan->sub_bidang == 'kepala_bidang')
+                          <div class="col p-0 px-1 mb-3">
+                            <div class="card bg-grey hover border-0 h-100">
+                              <a href="#" class="link-light text-decoration-none ">
+                                <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
+                                <div class="card-body p-3 text-center">
+                                    <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
+                                    <p class="card-text fw-bold mt-3">{{$staf->jabatan->jabatan_ina ?? '-'}}</p>
+                                </div>
+                              </a>
+                              <div class="card-footer p-3 d-flex justify-content-between border-0">
+                                <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
+                        @endif
+                      @endforeach
+                    </div>
+                  </div>
+                  <div class="tab-pane fade show active" id="sub_bidang_a" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2">
+                      @foreach($pegawais as $staf)
+                        @if($staf->jabatan->sub_bidang == 'pendidikan_dan_kerjasama')
+                          <div class="col p-0 px-1 mb-3">
+                            <div class="card bg-grey hover border-0 h-100">
+                              <a href="#" class="link-light text-decoration-none ">
+                                <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
+                                <div class="card-body p-3 text-center">
+                                    <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
+                                    <p class="card-text fw-bold mt-3">{{$staf->jabatan->jabatan_ina ?? '-'}}</p>
+                                </div>
+                              </a>
+                              <div class="card-footer p-3 d-flex justify-content-between border-0">
+                                <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
+                              </div>
+                            </div>
+                          </div>
+                        @endif
                       @endforeach
                     </div>
                   </div>
                   <div class="tab-pane fade" id="sub_bidang_b" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2">
-                      @foreach($stafs as $staf)
-                      <div class="col p-0 px-1 mb-3">
-                        <div class="card bg-grey hover border-0 h-100">
-                          <a href="#" class="link-light text-decoration-none ">
-                            <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
-                            <div class="card-body p-3 text-center">
-                                <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
-                                <p class="card-text fw-bold mt-3">{{$staf->prodi->prodi_ina ?? '-'}}</p>
-                            </div>
-                          </a>
-                          <div class="card-footer p-3 d-flex justify-content-between border-0">
-                            <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
-                            <div>
-                              <a href="{{$staf->sinta}}" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                              <a href="{{$staf->scopus}}" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
+                      @foreach($pegawais as $staf)
+                        @if($staf->jabatan->sub_bidang == 'umum_dan_keuangan')
+                          <div class="col p-0 px-1 mb-3">
+                            <div class="card bg-grey hover border-0 h-100">
+                              <a href="#" class="link-light text-decoration-none ">
+                                <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
+                                <div class="card-body p-3 text-center">
+                                    <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
+                                    <p class="card-text fw-bold mt-3">{{$staf->jabatan->jabatan_ina ?? '-'}}</p>
+                                </div>
+                              </a>
+                              <div class="card-footer p-3 d-flex justify-content-between border-0">
+                                <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
+                        @endif
                       @endforeach
                     </div>
                   </div>
                   <div class="tab-pane fade" id="sub_bidang_c" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2">
-                      @foreach($stafs as $staf)
-                      <div class="col p-0 px-1 mb-3">
-                        <div class="card bg-grey hover border-0 h-100">
-                          <a href="#" class="link-light text-decoration-none ">
-                            <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
-                            <div class="card-body p-3 text-center">
-                                <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
-                                <p class="card-text fw-bold mt-3">{{$staf->prodi->prodi_ina ?? '-'}}</p>
-                            </div>
-                          </a>
-                          <div class="card-footer p-3 d-flex justify-content-between border-0">
-                            <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
-                            <div>
-                              <a href="{{$staf->sinta}}" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                              <a href="{{$staf->scopus}}" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
+                      @foreach($pegawais as $staf)
+                        @if($staf->jabatan->sub_bidang == 'perencanaan_dan_sistem_informasi')
+                          <div class="col p-0 px-1 mb-3">
+                            <div class="card bg-grey hover border-0 h-100">
+                              <a href="#" class="link-light text-decoration-none ">
+                                <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
+                                <div class="card-body p-3 text-center">
+                                    <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
+                                    <p class="card-text fw-bold mt-3">{{$staf->jabatan->jabatan_ina ?? '-'}}</p>
+                                </div>
+                              </a>
+                              <div class="card-footer p-3 d-flex justify-content-between border-0">
+                                <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
+                        @endif
                       @endforeach
                     </div>
                   </div>
                   <div class="tab-pane fade" id="sub_bidang_d" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2">
-                      @foreach($stafs as $staf)
-                      <div class="col p-0 px-1 mb-3">
-                        <div class="card bg-grey hover border-0 h-100">
-                          <a href="#" class="link-light text-decoration-none ">
-                            <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
-                            <div class="card-body p-3 text-center">
-                                <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
-                                <p class="card-text fw-bold mt-3">{{$staf->prodi->prodi_ina ?? '-'}}</p>
-                            </div>
-                          </a>
-                          <div class="card-footer p-3 d-flex justify-content-between border-0">
-                            <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
-                            <div>
-                              <a href="{{$staf->sinta}}" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                              <a href="{{$staf->scopus}}" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
+                      @foreach($pegawais as $staf)
+                        @if($staf->jabatan->sub_bidang == 'kemahasiswaan')
+                          <div class="col p-0 px-1 mb-3">
+                            <div class="card bg-grey hover border-0 h-100">
+                              <a href="#" class="link-light text-decoration-none ">
+                                <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
+                                <div class="card-body p-3 text-center">
+                                    <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
+                                    <p class="card-text fw-bold mt-3">{{$staf->jabatan->jabatan_ina ?? '-'}}</p>
+                                </div>
+                              </a>
+                              <div class="card-footer p-3 d-flex justify-content-between border-0">
+                                <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
+                        @endif
                       @endforeach
                     </div>
                   </div>
@@ -610,8 +625,11 @@
                           <a href="#" class="link-light text-decoration-none ">
                             <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
                             <div class="card-body p-3 text-center">
-                                <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
-                                <p class="card-text fw-bold mt-3">{{$staf->prodi->prodi_ina ?? '-'}}</p>
+                                <h5 class="card-title fw-bold fs-5 mb-2">{{$staf->nama}}</h5>
+                                @foreach($staf->staf_prodi as $prodi)
+                                  <p class="card-text fw-bold">{{$prodi->prodi->prodi_ina ?? '-'}}</p>
+                                @endforeach
+                                
                             </div>
                           </a>
                           <div class="card-footer p-3 d-flex justify-content-between border-0">
@@ -628,14 +646,16 @@
                   </div>
                   <div class="tab-pane fade" id="guru-besar" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2">
-                      @foreach($stafs as $staf)
+                      @foreach($guru_besar as $staf)
                       <div class="col p-0 px-1 mb-3">
                         <div class="card bg-grey hover border-0 h-100">
                           <a href="#" class="link-light text-decoration-none ">
                             <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
                             <div class="card-body p-3 text-center">
                                 <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
-                                <p class="card-text fw-bold mt-3">{{$staf->prodi->prodi_ina ?? '-'}}</p>
+                                @foreach($staf->staf_prodi as $prodi)
+                                  <p class="card-text fw-bold">{{$prodi->prodi->prodi_ina ?? '-'}}</p>
+                                @endforeach
                             </div>
                           </a>
                           <div class="card-footer p-3 d-flex justify-content-between border-0">
@@ -652,14 +672,16 @@
                   </div>
                   <div class="tab-pane fade" id="dosen-biasa" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2">
-                      @foreach($stafs as $staf)
+                      @foreach($dosen as $staf)
                       <div class="col p-0 px-1 mb-3">
                         <div class="card bg-grey hover border-0 h-100">
                           <a href="#" class="link-light text-decoration-none ">
                             <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
                             <div class="card-body p-3 text-center">
                                 <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
-                                <p class="card-text fw-bold mt-3">{{$staf->prodi->prodi_ina ?? '-'}}</p>
+                                @foreach($staf->staf_prodi as $prodi)
+                                  <p class="card-text fw-bold">{{$prodi->prodi->prodi_ina ?? '-'}}</p>
+                                @endforeach
                             </div>
                           </a>
                           <div class="card-footer p-3 d-flex justify-content-between border-0">
@@ -682,185 +704,43 @@
             <div class="row">
               <div class="col-sm-12 col-md-2">
                 <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                  <button class="nav-link active text-white" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#arsitektur" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Teknik Arsitektur</button>
-                  <button class="nav-link text-white" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#sipil" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Teknik Sipil</button>
-                  <button class="nav-link text-white" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#mesin" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Teknik Mesin</button>
-                  <button class="nav-link text-white" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#elektro" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Teknik Elektro</button>
-                  <button class="nav-link text-white" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#ti" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Teknologi Informasi</button>
-                  <button class="nav-link text-white" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#lingkungan" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Teknik Lingkungan</button>
-                  <button class="nav-link text-white" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#industri" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Teknik Industri</button>
+                  @foreach($prodis as $prodi)
+                    <button class="nav-link @if($loop->iteration == 1) active @endif text-white" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#prodi{{ $prodi->id }}" type="button" role="tab" aria-controls="@if($loop->iteration == 1) v-pills-home @else v-pills-profile @endif" aria-selected="@if($loop->iteration == 1) true @else false @endif">{{ $prodi->prodi_ina }}</button>
+                  @endforeach
                 </div>
               </div>
               <div class="col-sm-12 col-md-10">
                 <div class="tab-content bg-grey text-white rounded p-3" id="v-pills-tabContent">
-                  <div class="tab-pane fade show active" id="arsitektur" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                    <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2">
-                      @foreach($stafs as $staf)
-                      <div class="col p-0 px-1 mb-3">
-                        <div class="card bg-grey hover border-0 h-100">
-                          <a href="#" class="link-light text-decoration-none ">
-                            <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
-                            <div class="card-body p-3 text-center">
-                                <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
-                                <p class="card-text fw-bold mt-3">{{$staf->prodi->prodi_ina ?? '-'}}</p>
-                            </div>
-                          </a>
-                          <div class="card-footer p-3 d-flex justify-content-between border-0">
-                            <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
-                            <div>
-                              <a href="{{$staf->sinta}}" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                              <a href="{{$staf->scopus}}" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
-                            </div>
-                          </div>
-                        </div>
+                  @foreach($prodis as $prodi)
+                    <div class="tab-pane fade show active" id="prodi{{ $prodi->id }}" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                      <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2">
+                        @foreach($stafs as $staf)
+                          @foreach($staf->staf_prodi as $staf_prodi)
+                            @if($prodi->id == $staf_prodi->id_prodi)
+                              <div class="col p-0 px-1 mb-3">
+                                <div class="card bg-grey hover border-0 h-100">
+                                  <a href="#" class="link-light text-decoration-none ">
+                                    <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
+                                    <div class="card-body p-3 text-center">
+                                        <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
+                                        {{-- <p class="card-text fw-bold mt-3">{{$staf->prodi->prodi_ina ?? '-'}}</p> --}}
+                                    </div>
+                                  </a>
+                                  <div class="card-footer p-3 d-flex justify-content-between border-0">
+                                    <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
+                                    <div>
+                                      <a href="{{$staf->sinta}}" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
+                                      <a href="{{$staf->scopus}}" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            @endif
+                          @endforeach
+                        @endforeach
                       </div>
-                      @endforeach
                     </div>
-                  </div>
-                  <div class="tab-pane fade" id="sipil" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2">
-                      @foreach($stafs as $staf)
-                      <div class="col p-0 px-1 mb-3">
-                        <div class="card bg-grey hover border-0 h-100">
-                          <a href="#" class="link-light text-decoration-none ">
-                            <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
-                            <div class="card-body p-3 text-center">
-                                <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
-                                <p class="card-text fw-bold mt-3">{{$staf->prodi->prodi_ina ?? '-'}}</p>
-                            </div>
-                          </a>
-                          <div class="card-footer p-3 d-flex justify-content-between border-0">
-                            <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
-                            <div>
-                              <a href="{{$staf->sinta}}" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                              <a href="{{$staf->scopus}}" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      @endforeach
-                    </div>
-                  </div>
-                  <div class="tab-pane fade" id="mesin" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2">
-                      @foreach($stafs as $staf)
-                      <div class="col p-0 px-1 mb-3">
-                        <div class="card bg-grey hover border-0 h-100">
-                          <a href="#" class="link-light text-decoration-none ">
-                            <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
-                            <div class="card-body p-3 text-center">
-                                <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
-                                <p class="card-text fw-bold mt-3">{{$staf->prodi->prodi_ina ?? '-'}}</p>
-                            </div>
-                          </a>
-                          <div class="card-footer p-3 d-flex justify-content-between border-0">
-                            <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
-                            <div>
-                              <a href="{{$staf->sinta}}" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                              <a href="{{$staf->scopus}}" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      @endforeach
-                    </div>
-                  </div>
-                  <div class="tab-pane fade" id="elektro" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2">
-                      @foreach($stafs as $staf)
-                      <div class="col p-0 px-1 mb-3">
-                        <div class="card bg-grey hover border-0 h-100">
-                          <a href="#" class="link-light text-decoration-none ">
-                            <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
-                            <div class="card-body p-3 text-center">
-                                <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
-                                <p class="card-text fw-bold mt-3">{{$staf->prodi->prodi_ina ?? '-'}}</p>
-                            </div>
-                          </a>
-                          <div class="card-footer p-3 d-flex justify-content-between border-0">
-                            <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
-                            <div>
-                              <a href="{{$staf->sinta}}" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                              <a href="{{$staf->scopus}}" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      @endforeach
-                    </div>
-                  </div>
-                  <div class="tab-pane fade" id="ti" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2">
-                      @foreach($stafs as $staf)
-                      <div class="col p-0 px-1 mb-3">
-                        <div class="card bg-grey hover border-0 h-100">
-                          <a href="#" class="link-light text-decoration-none ">
-                            <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
-                            <div class="card-body p-3 text-center">
-                                <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
-                                <p class="card-text fw-bold mt-3">{{$staf->prodi->prodi_ina ?? '-'}}</p>
-                            </div>
-                          </a>
-                          <div class="card-footer p-3 d-flex justify-content-between border-0">
-                            <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
-                            <div>
-                              <a href="{{$staf->sinta}}" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                              <a href="{{$staf->scopus}}" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      @endforeach
-                    </div>
-                  </div>
-                  <div class="tab-pane fade" id="lingkungan" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2">
-                      @foreach($stafs as $staf)
-                      <div class="col p-0 px-1 mb-3">
-                        <div class="card bg-grey hover border-0 h-100">
-                          <a href="#" class="link-light text-decoration-none ">
-                            <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
-                            <div class="card-body p-3 text-center">
-                                <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
-                                <p class="card-text fw-bold mt-3">{{$staf->prodi->prodi_ina ?? '-'}}</p>
-                            </div>
-                          </a>
-                          <div class="card-footer p-3 d-flex justify-content-between border-0">
-                            <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
-                            <div>
-                              <a href="{{$staf->sinta}}" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                              <a href="{{$staf->scopus}}" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      @endforeach
-                    </div>
-                  </div>
-                  <div class="tab-pane fade" id="industri" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2">
-                      @foreach($stafs as $staf)
-                      <div class="col p-0 px-1 mb-3">
-                        <div class="card bg-grey hover border-0 h-100">
-                          <a href="#" class="link-light text-decoration-none ">
-                            <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
-                            <div class="card-body p-3 text-center">
-                                <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>
-                                <p class="card-text fw-bold mt-3">{{$staf->prodi->prodi_ina ?? '-'}}</p>
-                            </div>
-                          </a>
-                          <div class="card-footer p-3 d-flex justify-content-between border-0">
-                            <a  class="btn btn-primary p-1 my-1" href="{{ route("Detail Staff Pengajar", ['language'=>app()->getLocale(), 'nama_slug' => $staf->nama_slug]) }}">Lihat Lebih Lanjut</a>
-                            <div>
-                              <a href="{{$staf->sinta}}" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                              <a href="{{$staf->scopus}}" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      @endforeach
-                    </div>
-                  </div>
+                  @endforeach
                 </div>
               </div>
             </div>
