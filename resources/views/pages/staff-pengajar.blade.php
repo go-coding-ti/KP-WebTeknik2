@@ -479,7 +479,7 @@
               @endforeach
             </div>
           </div>
-          <div class="tab-pane active" id="data-tu">
+          <div class="tab-pane" id="data-tu">
             <div class="row">
               <div class="col-sm-12 col-md-2">
                 <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -493,7 +493,7 @@
               <div class="col-sm-12 col-md-10">
                 <div class="tab-content bg-grey text-white rounded p-3" id="v-pills-tabContent">
                   <div class="tab-pane fade show active" id="kepala_bidang" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                    <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2 text-center">
+                    <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-3 px-3 pt-2 d-flex justify-content-center">
                       @foreach($pegawais as $staf)
                         @if($staf->jabatan->sub_bidang == 'kepala_bidang')
                           <div class="col p-0 px-1 mb-3">
@@ -606,7 +606,7 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane active" id="data-dosen">
+          <div class="tab-pane" id="data-dosen">
             <div class="row">
               <div class="col-sm-12 col-md-2">
                 <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -622,14 +622,15 @@
                       @foreach($stafs as $staf)
                       <div class="col p-0 px-1 mb-3">
                         <div class="card bg-grey hover border-0 h-100">
-                          <a href="#" class="link-light text-decoration-none ">
+                          <a href="#" class="link-light card-body text-decoration-none ">
                             <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
                             <div class="card-body p-3 text-center">
-                                <h5 class="card-title fw-bold fs-5 mb-2">{{$staf->nama}}</h5>
-                                @foreach($staf->staf_prodi as $prodi)
-                                  <p class="card-text fw-bold">{{$prodi->prodi->prodi_ina ?? '-'}}</p>
-                                @endforeach
-                                
+                                <h5 class="card-title fw-bold fs-5 mb-3">{{$staf->nama}}</h5>
+                                <ul class="list-unstyled">
+                                  @foreach($staf->staf_prodi as $prodi)
+                                    <li class="card-text fw-bold">{{$prodi->prodi->prodi_ina ?? '-'}}</li>
+                                  @endforeach
+                                </ul>
                             </div>
                           </a>
                           <div class="card-footer p-3 d-flex justify-content-between border-0">
@@ -700,7 +701,7 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane active" id="data-dosen-prodi">
+          <div class="tab-pane" id="data-dosen-prodi">
             <div class="row">
               <div class="col-sm-12 col-md-2">
                 <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -719,7 +720,7 @@
                             @if($prodi->id == $staf_prodi->id_prodi)
                               <div class="col p-0 px-1 mb-3">
                                 <div class="card bg-grey hover border-0 h-100">
-                                  <a href="#" class="link-light text-decoration-none ">
+                                  <a href="#" class="link-light card-body text-decoration-none ">
                                     <img src="{{$staf->foto}}" class="card-img-top mb-1" alt="...">
                                     <div class="card-body p-3 text-center">
                                         <h5 class="card-title fw-bold fs-5">{{$staf->nama}}</h5>

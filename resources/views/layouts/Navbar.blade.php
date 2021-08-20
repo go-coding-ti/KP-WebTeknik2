@@ -84,7 +84,7 @@
                   <li><a href="#">About</a>
                     <ul class="list-group list-group-flush dropdown" style="width: wrap-content">
                       <li class="p-0"><a class="hover" href="{{ route('About', app()->getLocale() ) }}"><i class="fas fa-link"></i> About</a></li>
-                      <li class="p-0"><a class="hover" href="{{ route("Management", app()->getLocale() ) }}"><i class="fas fa-link"></i> Management</a></li>
+                      {{-- <li class="p-0"><a class="hover" href="{{ route("Management", app()->getLocale() ) }}"><i class="fas fa-link"></i> Management</a></li> --}}
                       <li class="p-0"><a class="hover" href="{{ route("Staff Pengajar", app()->getLocale() ) }}"><i class="fas fa-link"></i> Staf</a></li>
                       <li class="p-0"><a class="hover" href="{{ route("Download Document", app()->getLocale() ) }}"><i class="fas fa-link"></i> Download Documents</a></li>
                     </ul>
@@ -185,7 +185,7 @@
                   <li><a href="#">Tentang</a>
                     <ul class="list-group list-group-flush dropdown" style="width: wrap-content">
                       <li class="p-0"><a class="hover" href="{{ route('About', app()->getLocale() ) }}"><i class="fas fa-link"></i> Tentang Teknik</a></li>
-                      <li class="p-0"><a class="hover" href="{{ route("Management", app()->getLocale() ) }}"><i class="fas fa-link"></i> Management</a></li>
+                      {{-- <li class="p-0"><a class="hover" href="{{ route("Management", app()->getLocale() ) }}"><i class="fas fa-link"></i> Management</a></li> --}}
                       <li class="p-0"><a class="hover" href="{{ route("Staff Pengajar", app()->getLocale() ) }}"><i class="fas fa-link"></i> Staf Pengajar</a></li>
                       <li class="p-0"><a class="hover" href="{{ route("Download Document", app()->getLocale() ) }}"><i class="fas fa-link"></i> Download Dokumen</a></li>
                     </ul>
