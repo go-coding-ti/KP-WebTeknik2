@@ -260,10 +260,7 @@ Route::group(['prefix' => '{language}'], function () {
     //Staf
     Route::get('/staf', 'HomeController@staf')->name('Staff Pengajar');
     Route::get('/staf/{nama_slug}', 'HomeController@showStaf')->name('Detail Staff Pengajar');
-
-    // Staf & Pengajar Route
-    Route::get('/staf/detail/dosen', 'HomeController@detailDosen')->name('Detail Dosen');
-    Route::get('/staf/detail/pegawai', 'HomeController@detailPegawai')->name('Detail Pegawai');
+    Route::get('/pegawai/{nama_slug}', 'HomeController@showPegawai')->name('Detail Pegawai');
 
     //Manajemen
     Route::get('/management', 'HomeController@manajemen')->name('Management');

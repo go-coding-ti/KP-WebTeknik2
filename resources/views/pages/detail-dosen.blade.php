@@ -14,18 +14,20 @@
         <div class="row">
         <div class="col-sm-12 col-md-5">
             <div class="card bg-grey text-white border-danger" w-100>
-                <img src="https://images.unsplash.com/photo-1611086551388-f0cf4d044c76?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDM3fFM0TUtMQXNCQjc0fHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
+                <img src="{{ $staf->foto }}" class="card-img-top" alt="...">
                 <div class="card-body text-center mb-3">
-                    <span class="card-text fw-bold fs-4">I Gede Hadi Darmawan</span>
-                    <p class="card-text fs-5">dosen@gmail.com</p>
+                    <span class="card-text fw-bold fs-4">{{ $staf->nama }}</span>
+                    <p class="card-text fs-5">{{ $staf->email }}</p>
                 </div>
                 <div class="rounded p-3 bg-grey text-white mt-3">
                     <h4 class="fw-bold">Research</h4>
                     <ol class="list-group list-group border-0 bg-grey">
                         <li class="list-group-item d-flex justify-content-between align-items-start bg-grey border-0">
                         <div class="ms-2 me-auto">
-                            <div class="fw-bold"><span>1. Penelitian A</span></div>
-                            <span>Penelitian mengenai suatu bidang A</span>
+                            {{-- <div class="fw-bold"><span>1. Penelitian A</span></div> --}}
+                            @foreach($bidangs as $bidang)
+                                <span>{{ $bidang->bidang_eng }}</span>
+                            @endforeach
                         </div>
                         </li>
                     </ol>
@@ -35,14 +37,14 @@
                     <ol class="list-group list-group border-0 bg-grey">
                         <li class="list-group-item d-flex justify-content-between align-items-start bg-grey border-0">
                             <div class="ms-2 me-auto">
-                                <div class="fw-bold"><span>Home Address</span></div>
-                                <span>Jl. Raya Sempidi, Badung</span>
+                                <div class="fw-bold"><span>Address</span></div>
+                                <p>{{ $staf->alamat }}</p>
                             </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start bg-grey border-0">
                             <div class="ms-2 me-auto">
                                 <div class="fw-bold"><span>Phone</span></div>
-                                <span>081234567890</span>
+                                <span>{{ $staf->nomor_telepon }}</span>
                             </div>
                         </li>
                     </ol>
@@ -51,37 +53,46 @@
         </div>
         <div class="col-sm-12 col-md-7">
             <div class="rounded p-3 bg-grey text-white">
-                <h4 class="fw-bold">Hadi Darmawan</h4>
-                <span class="fs-5">Information Technology</span>
+                <h4 class="fw-bold">{{ $staf->nama }}</h4>
+                @if($staf->jabatan == NULL)
+                    @foreach($staf->staf_prodi as $prodi)
+                        <span class="fs-5">{{ $prodi->prodi->prodi_eng }}</span>
+                        <br>
+                    @endforeach
+                @elseif($staf->jabatan != NULL)
+                    <span class="fs-5">{{ $staf->jabatan->jabatan_eng }}</span>
+                @endif
             </div>
             <div class="rounded p-3 bg-grey text-white mt-3">
                 <h4 class="fw-bold">Biography</h4>
-                <p class="fs-6">Isi Biografi</p>
+                <p class="fs-6">{{ $staf->biografi_eng }}</p>
             </div>
             <div class="rounded p-3 bg-grey text-white mt-3">
-                <h4 class="fw-bold">Education</h4>
+                <h4 class="fw-bold">Study</h4>
                 <ol class="list-group list-group border-0 bg-grey">
                   <li class="list-group-item d-flex justify-content-between align-items-start bg-grey border-0">
                     <div class="ms-2 me-auto">
                       <div class="fw-bold"><span>Bachelor</span></div>
-                      <span>Teknologi Informasi, Fakultas Teknik, Universitas Udayana</span>
+                      <span>{{ $staf->pendidikan_s1 }}</span>
                     </div>
                     <span class="badge bg-primary rounded-pill">SI</span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-start bg-grey border-0">
                     <div class="ms-2 me-auto">
-                      <div class="fw-bold"><span>Magister</span></div>
-                      <span>Software Engineering, Fakultas Teknik, ITB</span>
+                      <div class="fw-bold"><span>Master</span></div>
+                      <span>{{ $staf->pendidikan_s2 }}</span>
                     </div>
                     <span class="badge bg-primary rounded-pill">S2</span>
                   </li>
+                  @if($staf->pendidikan_s3 != "")
                     <li class="list-group-item d-flex justify-content-between align-items-start bg-grey border-0">
                       <div class="ms-2 me-auto">
-                        <div class="fw-bold"><span>Doktoral</span></div>
-                        <span>MIT University</span>
+                        <div class="fw-bold"><span>Doctoral</span></div>
+                        <span>{{ $staf->pendidikan_s3 }}</span>
                       </div>
                       <span class="badge bg-primary rounded-pill">S3</span>
                     </li>
+                @endif
                 </ol>
             </div>
             <div class="rounded p-3 bg-grey text-white mt-3">
@@ -89,15 +100,17 @@
                 <ol class="list-group list-group border-0 bg-grey">
                     <li class="list-group-item d-flex justify-content-between align-items-start bg-grey border-0">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold"><span>1. Publikasi Jurnal Smart Posyandu</span></div>
-                        <span>Publikasi jurnal hasil penelitian mengenai project Smart Posyandu yang merupakan pemodernisasi Posyandu.</span>
+                        {{-- <div class="fw-bold"><span>1. Publikasi Jurnal Smart Posyandu</span></div> --}}
+                        @foreach($penelitians as $penelitian)
+                            <span>{{ $penelitian->penelitian }}</span>
+                        @endforeach
                     </div>
                     </li>
                 </ol>
             </div>
             <div class="rounded p-3 bg-grey text-white mt-3 text-end">
-                <a href="" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                <a href="" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
+                <a href="{{ $staf->sinta }}" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
+                <a href="{{ $staf->scopus }}" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
             </div>
         </div>
         </div>
@@ -116,18 +129,20 @@
         <div class="row">
         <div class="col-sm-12 col-md-5">
             <div class="card bg-grey text-white border-danger" w-100>
-                <img src="https://images.unsplash.com/photo-1611086551388-f0cf4d044c76?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDM3fFM0TUtMQXNCQjc0fHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
+                <img src="{{ $staf->foto }}" class="card-img-top" alt="...">
                 <div class="card-body text-center mb-3">
-                    <span class="card-text fw-bold fs-4">I Gede Hadi Darmawan</span>
-                    <p class="card-text fs-5">dosen@gmail.com</p>
+                    <span class="card-text fw-bold fs-4">{{ $staf->nama }}</span>
+                    <p class="card-text fs-5">{{ $staf->email }}</p>
                 </div>
                 <div class="rounded p-3 bg-grey text-white mt-3">
                     <h4 class="fw-bold">Bidang Penelitian</h4>
                     <ol class="list-group list-group border-0 bg-grey">
                         <li class="list-group-item d-flex justify-content-between align-items-start bg-grey border-0">
                         <div class="ms-2 me-auto">
-                            <div class="fw-bold"><span>1. Penelitian A</span></div>
-                            <span>Penelitian mengenai suatu bidang A</span>
+                            {{-- <div class="fw-bold"><span>1. Penelitian A</span></div> --}}
+                            @foreach($bidangs as $bidang)
+                                <span>{{ $bidang->bidang }}</span>
+                            @endforeach
                         </div>
                         </li>
                     </ol>
@@ -138,13 +153,13 @@
                         <li class="list-group-item d-flex justify-content-between align-items-start bg-grey border-0">
                             <div class="ms-2 me-auto">
                                 <div class="fw-bold"><span>Alamat Tempat Tinggal</span></div>
-                                <span>Jl. Raya Sempidi, Badung</span>
+                                <p>{{ $staf->alamat }}</p>
                             </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start bg-grey border-0">
                             <div class="ms-2 me-auto">
                                 <div class="fw-bold"><span>Nomor Telpon</span></div>
-                                <span>081234567890</span>
+                                <span>{{ $staf->nomor_telepon }}</span>
                             </div>
                         </li>
                     </ol>
@@ -153,12 +168,19 @@
         </div>
         <div class="col-sm-12 col-md-7">
             <div class="rounded p-3 bg-grey text-white">
-                <h4 class="fw-bold">Hadi Darmawan</h4>
-                <span class="fs-5">Information Technology</span>
+                <h4 class="fw-bold">{{ $staf->nama }}</h4>
+                @if($staf->jabatan == NULL)
+                    @foreach($staf->staf_prodi as $prodi)
+                        <span class="fs-5">{{ $prodi->prodi->prodi_ina }}</span>
+                        <br>
+                    @endforeach
+                @elseif($staf->jabatan != NULL)
+                    <span class="fs-5">{{ $staf->jabatan->jabatan_ina }}</span>
+                @endif
             </div>
             <div class="rounded p-3 bg-grey text-white mt-3">
                 <h4 class="fw-bold">Biografi</h4>
-                <p class="fs-6">Isi Biografi</p>
+                <p class="fs-6">{{ $staf->biografi_ina }}</p>
             </div>
             <div class="rounded p-3 bg-grey text-white mt-3">
                 <h4 class="fw-bold">Pendidikan</h4>
@@ -166,24 +188,26 @@
                   <li class="list-group-item d-flex justify-content-between align-items-start bg-grey border-0">
                     <div class="ms-2 me-auto">
                       <div class="fw-bold"><span>Sarjana</span></div>
-                      <span>Teknologi Informasi, Fakultas Teknik, Universitas Udayana</span>
+                      <span>{{ $staf->pendidikan_s1 }}</span>
                     </div>
                     <span class="badge bg-primary rounded-pill">SI</span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-start bg-grey border-0">
                     <div class="ms-2 me-auto">
                       <div class="fw-bold"><span>Magister</span></div>
-                      <span>Software Engineering, Fakultas Teknik, ITB</span>
+                      <span>{{ $staf->pendidikan_s2 }}</span>
                     </div>
                     <span class="badge bg-primary rounded-pill">S2</span>
                   </li>
+                  @if($staf->pendidikan_s3 != "")
                     <li class="list-group-item d-flex justify-content-between align-items-start bg-grey border-0">
                       <div class="ms-2 me-auto">
                         <div class="fw-bold"><span>Doktoral</span></div>
-                        <span>MIT University</span>
+                        <span>{{ $staf->pendidikan_s3 }}</span>
                       </div>
                       <span class="badge bg-primary rounded-pill">S3</span>
                     </li>
+                @endif
                 </ol>
             </div>
             <div class="rounded p-3 bg-grey text-white mt-3">
@@ -191,15 +215,17 @@
                 <ol class="list-group list-group border-0 bg-grey">
                     <li class="list-group-item d-flex justify-content-between align-items-start bg-grey border-0">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold"><span>1. Publikasi Jurnal Smart Posyandu</span></div>
-                        <span>Publikasi jurnal hasil penelitian mengenai project Smart Posyandu yang merupakan pemodernisasi Posyandu.</span>
+                        {{-- <div class="fw-bold"><span>1. Publikasi Jurnal Smart Posyandu</span></div> --}}
+                        @foreach($penelitians as $penelitian)
+                            <span>{{ $penelitian->penelitian }}</span>
+                        @endforeach
                     </div>
                     </li>
                 </ol>
             </div>
             <div class="rounded p-3 bg-grey text-white mt-3 text-end">
-                <a href="" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                <a href="" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
+                <a href="{{ $staf->sinta }}" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
+                <a href="{{ $staf->scopus }}" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
             </div>
         </div>
         </div>

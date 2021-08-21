@@ -23,7 +23,9 @@ use App\Download;
 use App\Pegawai;
 use App\Prodi;
 use App\Slide;
+use App\StafBidang;
 use App\Staff;
+use App\StafPenelitian;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File; 
@@ -319,7 +321,9 @@ class HomeController extends Controller
     }
 
     public function showStaf($language, $nama_slug){
-        $staf = Staff::where('nama_slug', $nama_slug)->first();
+        $staf = Staff::with('staf_prodi', 'jabatan')->where('nama_slug', $nama_slug)->first();
+        $bidangs = StafBidang::where('id_staf', $staf->id)->get();
+        $penelitians = StafPenelitian::where('id_staf', $staf->id)->get();
         //ALL FUNCTION MUST APPLY CODES BELOW
         $sosmeds = Social::get();
         $preference = Preference::first();
@@ -328,11 +332,11 @@ class HomeController extends Controller
         $submenus = Submenu::get();
 
         $pengumumans = Pengumuman::with('kategori')->where('status', 'aktif')->whereDate('tanggal_publish', '<=', date('Y-m-d'))->orderBy('id', 'DESC')->limit(4)->get();
-        return view('pages/detail-staff-pengajar', compact('pengumumans', 'headers', 'menus', 'submenus', 'preference', 'sosmeds', 'staf'));
+        return view('pages/detail-dosen', compact('bidangs', 'penelitians', 'pengumumans', 'headers', 'menus', 'submenus', 'preference', 'sosmeds', 'staf'));
     }
 
-    public function manajemen(){
-        $stafs = Staff::where('deleted_at', NULL)->where('id_jabatan', '!=', NULL)->paginate(10);
+    public function showPegawai($language, $nama_slug){
+        $pegawai = Pegawai::with('jabatan')->where('nama_slug', $nama_slug)->first();
         //ALL FUNCTION MUST APPLY CODES BELOW
         $sosmeds = Social::get();
         $preference = Preference::first();
@@ -341,53 +345,8 @@ class HomeController extends Controller
         $submenus = Submenu::get();
 
         $pengumumans = Pengumuman::with('kategori')->where('status', 'aktif')->whereDate('tanggal_publish', '<=', date('Y-m-d'))->orderBy('id', 'DESC')->limit(4)->get();
-        return view('pages/management', compact('pengumumans', 'headers', 'menus', 'submenus', 'preference', 'sosmeds', 'stafs'));
+        return view('pages/detail-pegawai', compact('pengumumans', 'headers', 'menus', 'submenus', 'preference', 'sosmeds', 'pegawai'));
     }
 
-    public function showManajemen($language, $nama_slug){
-        $staf = Staff::where('nama_slug', $nama_slug)->first();
-        //ALL FUNCTION MUST APPLY CODES BELOW
-        $sosmeds = Social::get();
-        $preference = Preference::first();
-        $headers = Header::with('menu')->get();
-        $menus = Menu::with('submenu')->get();
-        $submenus = Submenu::get();
-
-        $pengumumans = Pengumuman::with('kategori')->where('status', 'aktif')->whereDate('tanggal_publish', '<=', date('Y-m-d'))->orderBy('id', 'DESC')->limit(4)->get();
-        return view('pages/detail-management', compact('pengumumans', 'headers', 'menus', 'submenus', 'preference', 'sosmeds', 'staf'));
-    }
   
-    
-
-    # Route Detail Staf & Pengajar
-
-        // Detail Dosen
-        public function detailDosen()
-        {
-            // $staf = Staff::where('nama_slug', $nama_slug)->first();
-            //ALL FUNCTION MUST APPLY CODES BELOW
-            $sosmeds = Social::get();
-            $preference = Preference::first();
-            $headers = Header::with('menu')->get();
-            $menus = Menu::with('submenu')->get();
-            $submenus = Submenu::get();
-
-            $pengumumans = Pengumuman::with('kategori')->where('status', 'aktif')->whereDate('tanggal_publish', '<=', date('Y-m-d'))->orderBy('id', 'DESC')->limit(4)->get();
-            return view ('pages.detail-dosen',  compact('pengumumans', 'headers', 'menus', 'submenus', 'preference', 'sosmeds'));
-        }
-
-        // Detail Pegawai
-        public function detailPegawai()
-        {
-            //ALL FUNCTION MUST APPLY CODES BELOW
-            $sosmeds = Social::get();
-            $preference = Preference::first();
-            $headers = Header::with('menu')->get();
-            $menus = Menu::with('submenu')->get();
-            $submenus = Submenu::get();
-
-            $pengumumans = Pengumuman::with('kategori')->where('status', 'aktif')->whereDate('tanggal_publish', '<=', date('Y-m-d'))->orderBy('id', 'DESC')->limit(4)->get();
-            return view ('pages.detail-pegawai',  compact('pengumumans', 'headers', 'menus', 'submenus', 'preference', 'sosmeds'));
-        }
-    # End Route
 }
