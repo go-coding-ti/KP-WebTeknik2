@@ -75,7 +75,7 @@
           </div>
         </li>
 
-        <li class="nav-item" id="sidebarVideo">
+        <li class="nav-item" id="sidebarSlideshow">
           <a class="nav-link" href="/admin/slideshows">
             <i class="fas fa-fw fa-image"></i>
             <span>Slideshow</span></a>

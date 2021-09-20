@@ -130,16 +130,6 @@
                 @enderror
             </div>
             <div class="form-group mt-4">
-                <label for="thumbnail">Thumbnail</label>
-                <br>
-                @if($agenda->thumbnail != "")
-                    <input type="text" class="form-control" name="thumbnail" id="thumbnail" placeholder="url" hidden>
-                    <img src="{{$agenda->thumbnail}}" style="border: 2px solid #DCDCDC;padding: 5px;height:20%;width:20%;" id="propic">
-                    <div class="custom-file">
-                    </div>
-                @endif
-            </div>
-            <div class="form-group mt-4">
                 <label for="lampiran">File Lampiran</label>
                 <br>    
                 <div class="custom-file">

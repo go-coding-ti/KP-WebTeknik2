@@ -44,7 +44,7 @@
             <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>
             </span>
-            <span class="text">Tambah Kategori</span>
+            <span class="text">Tambah Program Studi</span>
           </button>
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>

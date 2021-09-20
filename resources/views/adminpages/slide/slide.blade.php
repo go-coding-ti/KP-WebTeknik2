@@ -532,6 +532,6 @@
             })
     })()
 
-    $('#sidebarPengumuman').addClass("active");
+    $('#sidebarSlideshow').addClass("active");
 </script>
 @endsection

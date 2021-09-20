@@ -83,6 +83,32 @@
                         </div>
                     </div>
                     <div class="form-group mt-4">
+                        <label for="tentang_ina">Tentang Fakultas Teknik Bahasa Indonesia</label>
+                        <textarea id="tentang_ina" class="summernote" name="tentang_ina" required>{!! $preference->tentang_ina !!}</textarea>
+                        @error('tentang_ina')
+                            <div class="invalid-feedback text-start">
+                                {{ $message }}
+                            </div>
+                        @else
+                            <div class="invalid-feedback">
+                                Tentang Fakultas Teknik wajib diisi
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="tentang_eng">Tentang Fakultas Teknik Bahasa Inggris</label>
+                        <textarea id="tentang_eng" class="summernote" name="tentang_eng" required>{!! $preference->tentang_eng !!}</textarea>
+                        @error('tentang_ina')
+                            <div class="invalid-feedback text-start">
+                                {{ $message }}
+                            </div>
+                        @else
+                            <div class="invalid-feedback">
+                                Tentang Fakultas Teknik wajib diisi
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group mt-4">
                         <label for="footer_ina">Footer Bahasa Indonesia</label>
                         <textarea id="footer_ina" class="summernote" name="footer_ina" required>{!! $preference->footer_ina !!}</textarea>
                         @error('footer_ina')
@@ -97,7 +123,7 @@
                     </div>
                     <div class="form-group mt-4">
                         <label for="footer_eng">Footer Bahasa Inggris</label>
-                        <textarea id="footer_eng" class="summernote" name="footer_eng" required>{!! $preference->footer_ina !!}</textarea>
+                        <textarea id="footer_eng" class="summernote" name="footer_eng" required>{!! $preference->footer_eng !!}</textarea>
                         @error('footer_eng')
                             <div class="invalid-feedback text-start">
                                 {{ $message }}
