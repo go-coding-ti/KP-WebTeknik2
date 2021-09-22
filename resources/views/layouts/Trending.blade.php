@@ -12,10 +12,9 @@
       <div class="col p-0 px-1 mb-3">
         <div class="card bg-grey hover border-0 h-100">
           <a href="#" class="link-light text-decoration-none ">
-            <img src="{{$agenda->thumbnail}}" class="card-img-top mb-1" alt="...">
             <div class="card-body p-3">
-              <a href="#" class="btn btn-sm btn-danger p-1 text-uppercase my-1"><small>{{$agenda->kategori->kategori_eng}}</small></a>
               <p class="card-text h5 fw-bold mt-3"><a href="{{ route("Detail Agenda", ['language'=>app()->getLocale(), 'title_slug' => $agenda->title_slug]) }}" class="text-decoration-none link-light link-hover">{{$agenda->title_eng}}</a></p>
+              <a href="#" class="btn btn-sm btn-danger p-1 text-uppercase my-1"><small>{{$agenda->kategori->kategori_eng}}</small></a>
             </div>
           </a>
           <div class="card-footer p-3 text-end border-0">
@@ -42,10 +41,9 @@
       <div class="col p-0 px-1 mb-3">
         <div class="card bg-grey hover border-0 h-100">
           <a href="#" class="link-light text-decoration-none ">
-            <img src="{{$agenda->thumbnail}}" class="card-img-top mb-1" alt="...">
             <div class="card-body p-3">
-              <a href="{{ route("Agenda Kategori", ['language'=>app()->getLocale(), 'kategori' => $agenda->kategori->kategori_lower]) }}"  class="btn btn-sm btn-danger p-1 text-uppercase my-1"><small>{{$agenda->kategori->kategori_ina}}</small></a>
               <p class="card-text h5 fw-bold mt-3"><a href="{{ route("Detail Agenda", ['language'=>app()->getLocale(), 'title_slug' => $agenda->title_slug]) }}" class="text-decoration-none link-light link-hover">{{$agenda->title_ina}}</a></p>
+              <a href="{{ route("Agenda Kategori", ['language'=>app()->getLocale(), 'kategori' => $agenda->kategori->kategori_lower]) }}"  class="btn btn-sm btn-danger p-1 text-uppercase my-1"><small>{{$agenda->kategori->kategori_ina}}</small></a>
             </div>
           </a>
           <div class="card-footer p-3 text-end border-0">

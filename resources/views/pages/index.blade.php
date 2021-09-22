@@ -33,6 +33,18 @@
         @include('layouts/Trending')
     {{-- TRENDING End --}}
 
+    {{-- PIMPINAN --}}
+      @include('layouts/pimpinan')
+    {{-- PIMPINAN End --}}
+
+    {{-- DOSEN --}}
+      @include('layouts/dosen')
+    {{-- DOSEN End --}}
+
+    {{-- STAFF --}}
+      @include('layouts/staff')
+    {{-- STAFF End --}}
+
     {{-- HIGHLIGHTS --}}
         @include('layouts/Highlight')
     {{-- HIGHLIGHTS End --}}

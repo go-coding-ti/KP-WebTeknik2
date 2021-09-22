@@ -16,7 +16,6 @@
             </nav>
         </div>
         <div class="container mt-5 mb-5">
-            <img src="{{$agenda->thumbnail}}" class="img-fluid w-100 ratio ratio-16x9 mb-5" alt="...">
             <div class="row">
                 <div class="col-sm-12 col-md-9 col-lg-9">
                     <div class="card border-0 bg-grey text-light p-3">
@@ -79,7 +78,6 @@
             </nav>
         </div>
         <div class="container mt-5 mb-5">
-            <img src="{{$agenda->thumbnail}}" class="img-fluid w-100 ratio ratio-16x9 mb-5" alt="...">
             <div class="row">
                 <div class="col-sm-12 col-md-9 col-lg-9">
                     <div class="card border-0 bg-grey text-light p-3">
