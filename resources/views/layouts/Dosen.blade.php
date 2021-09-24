@@ -8,60 +8,28 @@
   </div>
   <div class="container">
     <div class="row row-cols-1 row-cols-lg-3 px-3 pt-2">
-        <div class="col p-0 px-1 mb-3">
-            <div class="card bg-grey hover border-0 h-100">
-                <a href="#" class="link-light text-decoration-none ">
-                <img src="https://images.unsplash.com/photo-1571868200845-4fe0659ffd61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8MjFhcGMzVFVFVm98fGVufDB8fHx8&auto=format&fit=crop&w=900&q=60" class="card-img-top mb-1" alt="...">
-                <div class="card-body p-3 text-center">
-                    <h5 class="card-title fw-bold fs-5">Nama Dosen</h5>
-                    <p class="card-text fw-bold mt-3">Dekan Fakultas Teknik</p>
-                </div>
-                </a>
-                <div class="card-footer p-3 d-flex justify-content-between border-0">
-                <a  class="btn btn-primary p-1 my-1" href="">See More</a>
-                <div>
-                    <a href="" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                    <a href="" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
-                </div>
-                </div>
-            </div>
-        </div>
-        <div class="col p-0 px-1 mb-3">
-            <div class="card bg-grey hover border-0 h-100">
-                <a href="#" class="link-light text-decoration-none ">
-                <img src="https://images.unsplash.com/photo-1631968065345-944e00749763?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8MjFhcGMzVFVFVm98fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" class="card-img-top mb-1" alt="...">
-                <div class="card-body p-3 text-center">
-                    <h5 class="card-title fw-bold fs-5">Nama Dosen</h5>
-                    <p class="card-text fw-bold mt-3">Dekan Fakultas Teknik</p>
-                </div>
-                </a>
-                <div class="card-footer p-3 d-flex justify-content-between border-0">
-                <a  class="btn btn-primary p-1 my-1" href="">See More</a>
-                <div>
-                    <a href="" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                    <a href="" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
-                </div>
+        @foreach($dosens as $dosen)
+            <div class="col p-0 px-1 mb-3">
+                <div class="card bg-grey hover border-0 h-100">
+                    <a href="#" class="link-light text-decoration-none ">
+                    <img src="{{ $dosen->foto }}" class="card-img-top mb-1" alt="...">
+                    <div class="card-body p-3 text-center">
+                        <h5 class="card-title fw-bold fs-5">{{ $dosen->nama }}</h5>
+                        @foreach($dosen->staf_prodi as $prodi)
+                            <p class="card-text fw-bold mt-3">{{ $prodi->prodi->prodi_eng ?? '-' }}</p>
+                        @endforeach
+                    </div>
+                    </a>
+                    <div class="card-footer p-3 d-flex justify-content-between border-0">
+                    <a  class="btn btn-primary p-1 my-1" href="">See More</a>
+                    <div>
+                        <a href="{{ $dosen->sinta }}" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
+                        <a href="{{ $dosen->scopus }}" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
+                    </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col p-0 px-1 mb-3">
-            <div class="card bg-grey hover border-0 h-100">
-                <a href="#" class="link-light text-decoration-none ">
-                <img src="https://images.unsplash.com/photo-1571868200845-4fe0659ffd61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8MjFhcGMzVFVFVm98fGVufDB8fHx8&auto=format&fit=crop&w=900&q=60" class="card-img-top mb-1" alt="...">
-                <div class="card-body p-3 text-center">
-                    <h5 class="card-title fw-bold fs-5">Nama Dosen</h5>
-                    <p class="card-text fw-bold mt-3">Dekan Fakultas Teknik</p>
-                </div>
-                </a>
-                <div class="card-footer p-3 d-flex justify-content-between border-0">
-                <a  class="btn btn-primary p-1 my-1" href="">See More</a>
-                <div>
-                    <a href="" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                    <a href="" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
-                </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
   </div>
 @endif
@@ -76,60 +44,28 @@
   </div>
   <div class="container">
     <div class="row row-cols-1 row-cols-lg-3 px-3 pt-2">
+        @foreach($dosens as $dosen)
         <div class="col p-0 px-1 mb-3">
             <div class="card bg-grey hover border-0 h-100">
                 <a href="#" class="link-light text-decoration-none ">
-                <img src="https://images.unsplash.com/photo-1571868200845-4fe0659ffd61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8MjFhcGMzVFVFVm98fGVufDB8fHx8&auto=format&fit=crop&w=900&q=60" class="card-img-top mb-1" alt="...">
+                <img src="{{ $dosen->foto }}" class="card-img-top mb-1" alt="...">
                 <div class="card-body p-3 text-center">
-                    <h5 class="card-title fw-bold fs-5">Nama Dosen</h5>
-                    <p class="card-text fw-bold mt-3">Dekan Fakultas Teknik</p>
+                    <h5 class="card-title fw-bold fs-5">{{ $dosen->nama }}</h5>
+                    @foreach($dosen->staf_prodi as $prodi)
+                        <p class="card-text fw-bold mt-3">{{ $prodi->prodi->prodi_ina ?? '-' }}</p>
+                    @endforeach
                 </div>
                 </a>
                 <div class="card-footer p-3 d-flex justify-content-between border-0">
-                <a  class="btn btn-primary p-1 my-1" href="">See More</a>
+                <a  class="btn btn-primary p-1 my-1" href="">Lihat Selengkapnya</a>
                 <div>
-                    <a href="" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                    <a href="" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
+                    <a href="{{ $dosen->sinta }}" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
+                    <a href="{{ $dosen->scopus }}" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
                 </div>
                 </div>
             </div>
         </div>
-        <div class="col p-0 px-1 mb-3">
-            <div class="card bg-grey hover border-0 h-100">
-                <a href="#" class="link-light text-decoration-none ">
-                <img src="https://images.unsplash.com/photo-1631968065345-944e00749763?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8MjFhcGMzVFVFVm98fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" class="card-img-top mb-1" alt="...">
-                <div class="card-body p-3 text-center">
-                    <h5 class="card-title fw-bold fs-5">Nama Dosen</h5>
-                    <p class="card-text fw-bold mt-3">Dekan Fakultas Teknik</p>
-                </div>
-                </a>
-                <div class="card-footer p-3 d-flex justify-content-between border-0">
-                <a  class="btn btn-primary p-1 my-1" href="">See More</a>
-                <div>
-                    <a href="" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                    <a href="" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
-                </div>
-                </div>
-            </div>
-        </div>
-        <div class="col p-0 px-1 mb-3">
-            <div class="card bg-grey hover border-0 h-100">
-                <a href="#" class="link-light text-decoration-none ">
-                <img src="https://images.unsplash.com/photo-1571868200845-4fe0659ffd61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8MjFhcGMzVFVFVm98fGVufDB8fHx8&auto=format&fit=crop&w=900&q=60" class="card-img-top mb-1" alt="...">
-                <div class="card-body p-3 text-center">
-                    <h5 class="card-title fw-bold fs-5">Nama Dosen</h5>
-                    <p class="card-text fw-bold mt-3">Dekan Fakultas Teknik</p>
-                </div>
-                </a>
-                <div class="card-footer p-3 d-flex justify-content-between border-0">
-                <a  class="btn btn-primary p-1 my-1" href="">See More</a>
-                <div>
-                    <a href="" target="_blank" class="btn btn-info p-1 my-1">Sinta</a>
-                    <a href="" target="_blank" class="btn btn-info p-1 my-1">Scopus</a>
-                </div>
-                </div>
-            </div>
-        </div>
+    @endforeach
     </div>
   </div>
 @endif

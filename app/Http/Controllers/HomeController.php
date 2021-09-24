@@ -40,6 +40,10 @@ class HomeController extends Controller
         $agendas = Agenda::with('kategori')->where('status', 'aktif')->orderBy('id', 'DESC')->limit(6)->get();
         $galeris = Galeri::orderBy('id', 'DESC')->limit(3)->get();
         $videos = Video::limit(3)->get();
+
+        $pimpinans = Staff::with('jabatan')->where('id_jabatan', '!=', NULL)->limit(3)->get();
+        $dosens = Staff::with('staf_prodi')->limit(3)->get();
+        $pegawais = Pegawai::with('jabatan')->limit(3)->get();
        
 
         //ALL FUNCTION MUST APPLY CODES BELOW
@@ -51,7 +55,7 @@ class HomeController extends Controller
 
         $pengumumans = Pengumuman::with('kategori')->where('status', 'aktif')->whereDate('tanggal_publish', '<=', date('Y-m-d'))->orderBy('id', 'DESC')->limit(4)->get();
 
-        return view('pages/index', compact('slideshows', 'preference', 'videos', 'kategoris', 'beritas', 'popularBeritas', 'agendas', 'galeris', 'pengumumans', 'headers', 'menus', 'submenus', 'sosmeds'));
+        return view('pages/index', compact('pegawais', 'dosens', 'pimpinans', 'slideshows', 'preference', 'videos', 'kategoris', 'beritas', 'popularBeritas', 'agendas', 'galeris', 'pengumumans', 'headers', 'menus', 'submenus', 'sosmeds'));
     }
 
     //AGENDA PAGE

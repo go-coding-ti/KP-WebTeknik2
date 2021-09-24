@@ -33,8 +33,16 @@
         @include('layouts/Trending')
     {{-- TRENDING End --}}
 
+    {{-- HIGHLIGHTS --}}
+        @include('layouts/Highlight')
+    {{-- HIGHLIGHTS End --}}
+
+    {{-- NEWS --}}
+        @include('layouts/News')
+    {{-- NEWS End --}}
+
     {{-- PIMPINAN --}}
-      @include('layouts/pimpinan')
+    @include('layouts/pimpinan')
     {{-- PIMPINAN End --}}
 
     {{-- DOSEN --}}
@@ -44,12 +52,4 @@
     {{-- STAFF --}}
       @include('layouts/staff')
     {{-- STAFF End --}}
-
-    {{-- HIGHLIGHTS --}}
-        @include('layouts/Highlight')
-    {{-- HIGHLIGHTS End --}}
-
-    {{-- NEWS --}}
-        @include('layouts/News')
-    {{-- NEWS End --}}
 @endsection
