@@ -302,7 +302,9 @@ class HomeController extends Controller
         $submenus = Submenu::get();
 
         $pengumumans = Pengumuman::with('kategori')->where('status', 'aktif')->whereDate('tanggal_publish', '<=', date('Y-m-d'))->orderBy('id', 'DESC')->limit(4)->get();
-        return view('pages/tentang-teknik', compact('pengumumans', 'headers', 'menus', 'submenus', 'preference', 'sosmeds'));
+
+        $tentang = Preference::first();
+        return view('pages/tentang-teknik', compact('pengumumans', 'headers', 'menus', 'submenus', 'preference', 'sosmeds', 'tentang'));
     }
 
     public function staf(){

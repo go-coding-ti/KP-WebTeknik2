@@ -1,10 +1,10 @@
 @extends('adminlayout.layout')
-@section('title', 'Preferences')
+@section('title', 'Tentang Fakultas Teknik')
 @section('content')
 
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">Preferences</h1>
-      <p class="mb-4">Pengaturan Website Fakultas Teknik Universitas Udayana</p>
+    <h1 class="h3 mb-2 text-gray-800">Tentang</h1>
+      <p class="mb-4">Tentang Fakultas Teknik Universitas Udayana</p>
 
       @if (session()->has('statusInput'))
         <div class="row">
@@ -36,75 +36,113 @@
 
       <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Preferences</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Tentang</h6>
         </div>
         <div class="card-body">
             <div class="card-body col-12">
-                <form id="form-product" method="post" action="{{Route('admin-preference-store')}}" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <form id="form-product" method="post" action="{{Route('admin-about-store')}}" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @csrf
-                    <div class="form-group">
-                        <label for="nama_website_ina">Nama Website Bahasa Indonesia</label>
-                        <input type="text" class="form-control @error ('nama_website_ina') is-invalid @enderror" id="nama_website_ina" name="nama_website_ina" value="{{$preference->nama_website_ina}}" required>
-                        @error('nama_website_ina')
+                    <div class="form-group mt-2">
+                        <label for="tentang_ina">Sejarah Fakultas Teknik Bahasa Indonesia</label>
+                        <textarea id="tentang_ina" class="summernote" name="tentang_ina" required>{!! $preference->tentang_ina !!}</textarea>
+                        @error('tentang_ina')
                             <div class="invalid-feedback text-start">
                                 {{ $message }}
                             </div>
                         @else
                             <div class="invalid-feedback">
-                                Nama website Bahasa Indonesia wajib diisi
+                                Sejarah Fakultas Teknik wajib diisi
                             </div>
                         @enderror
                     </div>
                     <div class="form-group mt-4">
-                        <label for="nama_website_eng">Nama Website Bahasa Inggris</label>
-                        <input type="text" class="form-control @error ('nama_website_eng') is-invalid @enderror" id="nama_website_eng" name="nama_website_eng" value="{{$preference->nama_website_eng}}" required>
-                        @error('nama_website_eng')
+                        <label for="tentang_eng">Sejarah Fakultas Teknik Bahasa Inggris</label>
+                        <textarea id="tentang_eng" class="summernote" name="tentang_eng" required>{!! $preference->tentang_eng !!}</textarea>
+                        @error('tentang_ina')
                             <div class="invalid-feedback text-start">
                                 {{ $message }}
                             </div>
                         @else
                             <div class="invalid-feedback">
-                                Nama website Bahasa Inggris wajib diisi
+                                Sejarah Fakultas Teknik wajib diisi
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group mt-5">
+                        <label for="tentang_ina">Visi & Misi Fakultas Teknik Bahasa Indonesia</label>
+                        <textarea id="visi_misi_ina" class="summernote" name="visi_misi_ina" required>{!! $preference->visi_misi_ina !!}</textarea>
+                        @error('visi_misi_ina')
+                            <div class="invalid-feedback text-start">
+                                {{ $message }}
+                            </div>
+                        @else
+                            <div class="invalid-feedback">
+                                Visi & Misi Fakultas Teknik wajib diisi
                             </div>
                         @enderror
                     </div>
                     <div class="form-group mt-4">
-                        <label for="logo">Logo Website</label>
-                        <br>
-                        <img src="{{$preference->logo}}" class="mb-1" style="border: 2px solid #DCDCDC;padding: 5px;height:20%;width:20%;" id="propic">
-                        <input type="text" class="form-control" name="logo" id="logo" placeholder="url" hidden>
-                        <div class="custom-file">
-                          <button type="button" class="btn btn-primary btn-icon-split mt-1" data-target="#crop-image" data-toggle="modal">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-images"></i>
-                            </span>
-                            <span class="text">Pilih Logo</span>
-                        </button>
-                        </div>
-                    </div>
-                    <div class="form-group mt-4">
-                        <label for="footer_ina">Footer Bahasa Indonesia</label>
-                        <textarea id="footer_ina" class="summernote" name="footer_ina" required>{!! $preference->footer_ina !!}</textarea>
-                        @error('footer_ina')
+                        <label for="tentang_eng">Visi & Misi Fakultas Teknik Bahasa Inggris</label>
+                        <textarea id="visi_misi_eng" class="summernote" name="visi_misi_eng" required>{!! $preference->visi_misi_eng !!}</textarea>
+                        @error('visi_misi_eng')
                             <div class="invalid-feedback text-start">
                                 {{ $message }}
                             </div>
                         @else
                             <div class="invalid-feedback">
-                                Footer Bahasa Indonesia wajib diisi
+                                Visi & Misi Fakultas Teknik wajib diisi
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group mt-5">
+                        <label for="tentang_ina">Tujuan & Target Fakultas Teknik Bahasa Indonesia</label>
+                        <textarea id="tujuan_ina" class="summernote" name="tujuan_ina" required>{!! $preference->tujuan_ina !!}</textarea>
+                        @error('tujuan_ina')
+                            <div class="invalid-feedback text-start">
+                                {{ $message }}
+                            </div>
+                        @else
+                            <div class="invalid-feedback">
+                                Tujuan & Target Fakultas Teknik wajib diisi
                             </div>
                         @enderror
                     </div>
                     <div class="form-group mt-4">
-                        <label for="footer_eng">Footer Bahasa Inggris</label>
-                        <textarea id="footer_eng" class="summernote" name="footer_eng" required>{!! $preference->footer_eng !!}</textarea>
-                        @error('footer_eng')
+                        <label for="tentang_eng">Tujuan & Target Fakultas Teknik Bahasa Inggris</label>
+                        <textarea id="tujuan_eng" class="summernote" name="tujuan_eng" required>{!! $preference->tujuan_eng !!}</textarea>
+                        @error('tujuan_eng')
                             <div class="invalid-feedback text-start">
                                 {{ $message }}
                             </div>
                         @else
                             <div class="invalid-feedback">
-                                Footer Bahasa Inggris wajib diisi
+                                Tujuan & Target Fakultas Teknik wajib diisi
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group mt-5">
+                        <label for="tentang_ina">Denah Fakultas Teknik Bahasa Indonesia</label>
+                        <textarea id="denah_ina" class="summernote" name="denah_ina" required>{!! $preference->denah_ina !!}</textarea>
+                        @error('denah_ina')
+                            <div class="invalid-feedback text-start">
+                                {{ $message }}
+                            </div>
+                        @else
+                            <div class="invalid-feedback">
+                                Denah Fakultas Teknik wajib diisi
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="tentang_eng">Denah Fakultas Teknik Bahasa Inggris</label>
+                        <textarea id="denah_eng" class="summernote" name="denah_eng" required>{!! $preference->denah_eng !!}</textarea>
+                        @error('denah_eng')
+                            <div class="invalid-feedback text-start">
+                                {{ $message }}
+                            </div>
+                        @else
+                            <div class="invalid-feedback">
+                                Denah Fakultas Teknik wajib diisi
                             </div>
                         @enderror
                     </div>
