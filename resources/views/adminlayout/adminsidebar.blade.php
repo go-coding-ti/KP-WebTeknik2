@@ -151,6 +151,7 @@
               <a class="collapse-item" href="/admin/menus" ><i class="fas fa-fw fa-list"></i>  Website Menu</a>
               <a class="collapse-item" href="/admin/setting/preferences" ><i class="fas fa-fw fa-cog"></i>  Preferences</a>
               <a class="collapse-item" href="/admin/setting/social"><i class="fas fa-fw fa-share"></i>  Social Media</a>
+              <a class="collapse-item" href="/admin/setting/about"><i class="fas fa-fw fa-address-card"></i>  Tentang</a>
             </div>
           </div>
         </li>

@@ -196,6 +196,9 @@ Route::group(['prefix' => 'admin'], function () {
     //Preferences Controller
     Route::get('/setting/preferences', 'AdminController\PreferenceController@index')->name('admin-preference-home');
     Route::post('/setting/preferences/store', 'AdminController\PreferenceController@store')->name('admin-preference-store');
+    //Tentang Controller
+    Route::get('/setting/about', 'AdminController\AboutController@index')->name('admin-about-home');
+    Route::post('/setting/about/store', 'AdminController\AboutController@store')->name('admin-about-store');
 
     //Prodi Controller
     Route::get('/prodi', 'AdminController\ProdiController@index')->name('admin-prodi-home');
