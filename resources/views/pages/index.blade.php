@@ -42,14 +42,14 @@
     {{-- NEWS End --}}
 
     {{-- PIMPINAN --}}
-    @include('layouts/pimpinan')
+    @include('layouts/Pimpinan')
     {{-- PIMPINAN End --}}
 
     {{-- DOSEN --}}
-      @include('layouts/dosen')
+      @include('layouts/Dosen')
     {{-- DOSEN End --}}
 
     {{-- STAFF --}}
-      @include('layouts/staff')
+      @include('layouts/Staff')
     {{-- STAFF End --}}
 @endsection
