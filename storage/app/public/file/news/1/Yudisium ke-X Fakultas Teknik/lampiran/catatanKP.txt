@@ -1,0 +1,19 @@
+Catatan
+Buat page kosong: isinya sama seperti detail agenda, tapi detail agenda bagian bawah ganti pakai galeri+attachment
+
+[INDEX]
+-NewsLayout: tambahin button see all, jangan tulisan beritanya yg diklik
+-Video taruh paling akhir, berita->agenda->pengumuman->video
+layout berita dan pengumuman ditukar aja
+pengumuman tambahin kategori kalo bisa di listnya seperti berita
+
+
+
+[Berita]
+hapus berita lainnya di list berita, di detail biarkan
+
+[Pengumuman]
+hapus pengumuman lainnya di list pengumuman, didetail biarkan
+
+[Agenda]
+kalau bisa desain agenda di Index dan agenda.blade.php sama isi lokasi dll 
