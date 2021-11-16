@@ -12,6 +12,26 @@
                     <hr class="border border-light dropdown-divider">
                     <p class="fw-bold text-start">
                     <p class="fw-bold text-start small">
+                        <a href="https://www.unud.ac.id/" class="text-decoration-none link-light link-hover">Udayana University</a>
+                    </p>
+                    <p class="fw-bold text-start small">
+                        <a href="https://www.lpdp.kemenkeu.go.id/" class="text-decoration-none link-light link-hover">LPDP</a>
+                    </p>
+                    <p class="fw-bold text-start small">
+                        <a href="https://lppm.unud.ac.id/" class="text-decoration-none link-light link-hover">LPPM Udayana</a>
+                    </p>
+                    <p class="fw-bold text-start small">
+                        <a href="https://cdc.unud.ac.id/" class="text-decoration-none link-light link-hover">Career Development Center</a>
+                    </p>
+                    <p class="fw-bold text-start small">
+                        <a href="https://alumni.unud.ac.id/" class="text-decoration-none link-light link-hover">Alumni</a>
+                    </p>
+                    <p class="fw-bold text-start small">
+                        <a href="https://www.sciencedirect.com/" class="text-decoration-none link-light link-hover">Science Direct</a>
+                    </p>
+                </div>
+                {{-- <div class="col-md mt-5">
+                    <p class="fw-bold text-start small">
                         <a href="" class="text-decoration-none link-light link-hover">Udayana University</a>
                     </p>
                     <p class="fw-bold text-start small">
@@ -29,27 +49,7 @@
                     <p class="fw-bold text-start small">
                         <a href="" class="text-decoration-none link-light link-hover">Science Direct</a>
                     </p>
-                </div>
-                <div class="col-md mt-5">
-                    <p class="fw-bold text-start small">
-                        <a href="" class="text-decoration-none link-light link-hover">Udayana University</a>
-                    </p>
-                    <p class="fw-bold text-start small">
-                        <a href="" class="text-decoration-none link-light link-hover">LPDP</a>
-                    </p>
-                    <p class="fw-bold text-start small">
-                        <a href="" class="text-decoration-none link-light link-hover">LPPM Udayana</a>
-                    </p>
-                    <p class="fw-bold text-start small">
-                        <a href="" class="text-decoration-none link-light link-hover">Career Development Center</a>
-                    </p>
-                    <p class="fw-bold text-start small">
-                        <a href="" class="text-decoration-none link-light link-hover">Alumni</a>
-                    </p>
-                    <p class="fw-bold text-start small">
-                        <a href="" class="text-decoration-none link-light link-hover">Science Direct</a>
-                    </p>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="container p-0">
@@ -77,6 +77,26 @@
                     <hr class="border border-light dropdown-divider">
                     <p class="fw-bold text-start">
                     <p class="fw-bold text-start small">
+                        <a href="https://www.unud.ac.id/" class="text-decoration-none link-light link-hover">Universitas Udayana</a>
+                    </p>
+                    <p class="fw-bold text-start small">
+                        <a href="https://www.lpdp.kemenkeu.go.id/" class="text-decoration-none link-light link-hover">LPDP</a>
+                    </p>
+                    <p class="fw-bold text-start small">
+                        <a href="https://lppm.unud.ac.id/" class="text-decoration-none link-light link-hover">LPPM Udayana</a>
+                    </p>
+                    <p class="fw-bold text-start small">
+                        <a href="https://cdc.unud.ac.id/" class="text-decoration-none link-light link-hover">Career Development Center</a>
+                    </p>
+                    <p class="fw-bold text-start small">
+                        <a href="https://alumni.unud.ac.id/" class="text-decoration-none link-light link-hover">Alumni</a>
+                    </p>
+                    <p class="fw-bold text-start small">
+                        <a href="https://www.sciencedirect.com/" class="text-decoration-none link-light link-hover">Science Direct</a>
+                    </p>
+                </div>
+                {{-- <div class="col-md mt-5">
+                    <p class="fw-bold text-start small">
                         <a href="" class="text-decoration-none link-light link-hover">Universitas Udayana</a>
                     </p>
                     <p class="fw-bold text-start small">
@@ -94,27 +114,7 @@
                     <p class="fw-bold text-start small">
                         <a href="" class="text-decoration-none link-light link-hover">Science Direct</a>
                     </p>
-                </div>
-                <div class="col-md mt-5">
-                    <p class="fw-bold text-start small">
-                        <a href="" class="text-decoration-none link-light link-hover">Universitas Udayana</a>
-                    </p>
-                    <p class="fw-bold text-start small">
-                        <a href="" class="text-decoration-none link-light link-hover">LPDP</a>
-                    </p>
-                    <p class="fw-bold text-start small">
-                        <a href="" class="text-decoration-none link-light link-hover">LPPM Udayana</a>
-                    </p>
-                    <p class="fw-bold text-start small">
-                        <a href="" class="text-decoration-none link-light link-hover">Career Development Center</a>
-                    </p>
-                    <p class="fw-bold text-start small">
-                        <a href="" class="text-decoration-none link-light link-hover">Alumni</a>
-                    </p>
-                    <p class="fw-bold text-start small">
-                        <a href="" class="text-decoration-none link-light link-hover">Science Direct</a>
-                    </p>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="container text-center">
